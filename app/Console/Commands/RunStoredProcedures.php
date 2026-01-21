@@ -22,7 +22,7 @@ class RunStoredProcedures extends Command
             'leveranciers/SP_GetProductById.sql',
             'leveranciers/SP_GetProductPerLeverancierById.sql',
             'leveranciers/SP_Updateproduct.sql',
-            
+
             // Voedselpakketten
             'voedselpakket/SP_Voedselpakket_Eetwens_SelectAll.sql',
             'voedselpakket/SP_Voedselpakket_GetForEdit.sql',
@@ -31,7 +31,7 @@ class RunStoredProcedures extends Command
             'voedselpakket/SP_Voedselpakket_GezinnenOverzicht.sql',
             'voedselpakket/SP_Voedselpakket_PakkettenPerGezin.sql',
             'voedselpakket/SP_Voedselpakket_UpdateStatus.sql',
-            
+
             // Voorraad
             'voorraad/SP_GetAllCategorieen.sql',
             'voorraad/SP_GetAllMagazijnen.sql',

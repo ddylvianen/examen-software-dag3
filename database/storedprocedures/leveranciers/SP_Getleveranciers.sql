@@ -1,4 +1,4 @@
-USE voedselbank2;
+USE Voedselbank2;
 
 DROP PROCEDURE IF EXISTS SP_Getleveranciers;
 

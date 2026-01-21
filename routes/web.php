@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\LeverancierController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -11,13 +12,25 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('home');
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Leveranciers routes (toegankelijk voor Manager en Medewerker)
+    Route::middleware(['role:Manager,Medewerker'])->group(function () {
+        Route::get('/leveranciers', [LeverancierController::class, 'index'])->name('leveranciers.index');
+        Route::get('/leveranciers/{id}', [LeverancierController::class, 'show'])->name('leveranciers.show');
+    });
+
+    // Leveranciers update routes (alleen Manager)
+    Route::middleware(['role:Manager'])->group(function () {
+        Route::get('/leveranciers/{id}/update-product', [LeverancierController::class, 'edit'])->name('leveranciers.update.form');
+        Route::post('/leveranciers/update-product', [LeverancierController::class, 'updateProduct'])->name('leveranciers.update');
+    });
 });
 
 // Admin routes

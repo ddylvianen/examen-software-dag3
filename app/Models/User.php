@@ -66,11 +66,11 @@ class User extends Authenticatable
     }
 
     /**
-     * Check via role name (e.g. 'Manager')
+     * Check if user has one or more roles (e.g. hasRole('Manager', 'Admin'))
      */
-    public function hasRole(string $roleName): bool
+    public function hasRole(string ...$roleNames): bool
     {
-        return $this->rollen()->where('Naam', $roleName)->exists();
+        return $this->rollen()->whereIn('Naam', $roleNames)->exists();
     }
 
     /**

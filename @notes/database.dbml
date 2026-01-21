@@ -2,238 +2,308 @@ Project Voedselbank {
   database_type: "MySQL"
 }
 
-Table roles {
-  id int [pk, increment]
-  name varchar(50) [unique, not null]
-  guard_name varchar(50) [not null, default: "web"]
-  created_at timestamp
-  updated_at timestamp
-}
+/* =========================
+   AUTHENTICATIE & GEBRUIKERS
+   ========================= */
 
 Table users {
   id int [pk, increment]
-  role_id int [not null]
+  PersoonId int
   name varchar(255) [not null]
   email varchar(255) [not null, unique]
   email_verified_at timestamp
   password varchar(255) [not null]
+  IsIngelogd bit(1) [default: 0]
+  Ingelogd datetime
+  Uitgelogd datetime
   remember_token varchar(100)
   created_at timestamp
   updated_at timestamp
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table adressen {
-  id int [pk, increment]
-  straat varchar(255) [not null]
-  huisnummer varchar(20) [not null]
-  postcode char(6) [not null]
-  plaats varchar(100) [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table Rol {
+  Id int [pk, increment]
+  Naam varchar(100) [not null]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table product_categorieen {
-  id int [pk, increment]
-  naam varchar(100) [not null, unique]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table RolPerGebruiker {
+  Id int [pk, increment]
+  GebruikerId int [not null]
+  RolId int [not null]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table wensen {
-  id int [pk, increment]
-  omschrijving varchar(100) [not null, unique]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+/* =========================
+   PERSONEN & GEZINNEN
+   ========================= */
+
+Table Persoon {
+  Id int [pk, increment]
+  GezinId int
+  Voornaam varchar(255) [not null]
+  Tussenvoegsel varchar(50)
+  Achternaam varchar(255) [not null]
+  Geboortedatum date
+  TypePersoon varchar(50)
+  IsVertegenwoordiger bit(1) [default: 0]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table allergenen {
-  id int [pk, increment]
-  naam varchar(100) [not null, unique]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table Gezin {
+  Id int [pk, increment]
+  Naam varchar(255) [not null]
+  Code varchar(20)
+  Omschrijving varchar(255)
+  AantalVolwassenen int [default: 0]
+  AantalKinderen int [default: 0]
+  AantalBabys int [default: 0]
+  TotaalAantalPersonen int [default: 0]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table contactpersonen {
-  id int [pk, increment]
-  contact_naam varchar(255) [not null]
-  email varchar(255) [not null]
-  telefoon varchar(20) [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+/* =========================
+   CONTACT & ADRES
+   ========================= */
+
+Table Contact {
+  Id int [pk, increment]
+  Straat varchar(255) [not null]
+  Huisnummer varchar(20) [not null]
+  Toevoeging varchar(20)
+  Postcode varchar(10) [not null]
+  Woonplaats varchar(100) [not null]
+  Email varchar(255)
+  Mobiel varchar(20)
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table leveranciers {
-  id int [pk, increment]
-  bedrijfsnaam varchar(255) [not null]
-  adres_id int [not null]
-  contactpersoon_id int [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table ContactPerGezin {
+  Id int [pk, increment]
+  GezinId int [not null]
+  ContactId int [not null]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table gezinnen {
-  id int [pk, increment]
-  gezins_naam varchar(255) [not null]
-  volwassenen tinyint [not null]
-  kinderen tinyint [not null]
-  babys tinyint [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+/* =========================
+   EETWENSEN & ALLERGENEN
+   ========================= */
+
+Table Eetwens {
+  Id int [pk, increment]
+  Naam varchar(100) [not null]
+  Omschrijving varchar(255)
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table klanten {
-  id int [pk, increment]
-  naam varchar(255) [not null]
-  email varchar(255) [not null, unique]
-  telefoon varchar(20) [not null]
-  adres_id int [not null]
-  gezin_id int [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table EetwensPerGezin {
+  Id int [pk, increment]
+  GezinId int [not null]
+  EetwensId int [not null]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table producten {
-  id int [pk, increment]
-  product_naam varchar(255) [not null, unique]
-  ean char(13) [not null, unique]
-  categorie_id int [not null]
-  aantal_voorraad int [not null]
-  magazijn_locatie varchar(50)
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table Allergie {
+  Id int [pk, increment]
+  Naam varchar(100) [not null]
+  Omschrijving varchar(255)
+  AnafylactischRisico varchar(50)
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table product_kenmerken {
-  id int [pk, increment]
-  product_id int [not null]
-  wens_id int [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table AllergiePerPersoon {
+  Id int [pk, increment]
+  PersoonId int [not null]
+  AllergieId int [not null]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table product_allergenen {
-  id int [pk, increment]
-  product_id int [not null]
-  allergie_id int [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+/* =========================
+   PRODUCTEN & CATEGORIEEN
+   ========================= */
+
+Table Categorie {
+  Id int [pk, increment]
+  Naam varchar(100) [not null]
+  Omschrijving varchar(255)
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table leveringen {
-  id int [pk, increment]
-  leverancier_id int [not null]
-  leverdatum_tijd datetime [not null]
-  eerstvolgende_levering datetime [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table Product {
+  Id int [pk, increment]
+  CategorieId int [not null]
+  Naam varchar(255) [not null]
+  SoortAllergie varchar(255)
+  Barcode varchar(50)
+  Houdbaarheidsdatum date
+  Omschrijving varchar(255)
+  Status varchar(50)
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table levering_producten {
-  id int [pk, increment]
-  levering_id int [not null]
-  product_id int [not null]
-  aantal int [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+/* =========================
+   LEVERANCIERS & MAGAZIJN
+   ========================= */
+
+Table Leverancier {
+  Id int [pk, increment]
+  Naam varchar(255) [not null]
+  ContactPersoon varchar(255)
+  LeverancierNummer varchar(50)
+  LeverancierType varchar(50)
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table voedselpakketten {
-  id int [pk, increment]
-  klant_id int [not null]
-  datum_samenstelling datetime [not null]
-  datum_uitgifte datetime
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table ContactPerLeverancier {
+  Id int [pk, increment]
+  LeverancierId int [not null]
+  ContactId int [not null]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table voedselpakket_producten {
-  id int [pk, increment]
-  voedselpakket_id int [not null]
-  product_id int [not null]
-  aantal tinyint [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table ProductPerLeverancier {
+  Id int [pk, increment]
+  LeverancierId int [not null]
+  ProductId int [not null]
+  DatumAangeleverd date
+  DatumEerstVolgendeLevering date
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table klant_wensen {
-  id int [pk, increment]
-  klant_id int [not null]
-  wens_id int [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table Magazijn {
+  Id int [pk, increment]
+  Ontvangstdatum date
+  Uitleveringsdatum date
+  VerpakkingsEenheid varchar(50)
+  Aantal int [default: 0]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-Table klant_allergenen {
-  id int [pk, increment]
-  klant_id int [not null]
-  allergie_id int [not null]
-  is_actief boolean [not null]
-  opmerking varchar(255)
-  datum_aangemaakt datetime
-  datum_gewijzigd datetime
+Table ProductPerMagazijn {
+  Id int [pk, increment]
+  ProductId int [not null]
+  MagazijnId int [not null]
+  Locatie varchar(100)
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
 }
 
-/* RELATIES */
-Ref: users.role_id > roles.id
+/* =========================
+   VOEDSELPAKKETTEN
+   ========================= */
 
-Ref: leveranciers.adres_id > adressen.id
-Ref: leveranciers.contactpersoon_id > contactpersonen.id
+Table Voedselpakket {
+  Id int [pk, increment]
+  GezinId int [not null]
+  PakketNummer int [not null]
+  DatumSamenstelling datetime
+  DatumUitgifte datetime
+  Status varchar(50)
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+}
 
-Ref: klanten.adres_id > adressen.id
-Ref: klanten.gezin_id > gezinnen.id
+Table ProductPerVoedselpakket {
+  Id int [pk, increment]
+  VoedselpakketId int [not null]
+  ProductId int [not null]
+  AantalProductEenheden int [default: 0]
+  IsActief bit(1) [default: 1]
+  Opmerking varchar(255)
+  DatumAangemaakt datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+  DatumGewijzigd datetime(6) [default: `CURRENT_TIMESTAMP(6)`]
+}
 
-Ref: producten.categorie_id > product_categorieen.id
+/* =========================
+   RELATIES
+   ========================= */
 
-Ref: product_kenmerken.product_id > producten.id
-Ref: product_kenmerken.wens_id > wensen.id
+// Users & Rollen
+Ref: users.PersoonId > Persoon.Id
+Ref: RolPerGebruiker.GebruikerId > users.id
+Ref: RolPerGebruiker.RolId > Rol.Id
 
-Ref: product_allergenen.product_id > producten.id
-Ref: product_allergenen.allergie_id > allergenen.id
+// Persoon & Gezin
+Ref: Persoon.GezinId > Gezin.Id
 
-Ref: leveringen.leverancier_id > leveranciers.id
+// Contact relaties
+Ref: ContactPerGezin.GezinId > Gezin.Id
+Ref: ContactPerGezin.ContactId > Contact.Id
+Ref: ContactPerLeverancier.LeverancierId > Leverancier.Id
+Ref: ContactPerLeverancier.ContactId > Contact.Id
 
-Ref: levering_producten.levering_id > leveringen.id
-Ref: levering_producten.product_id > producten.id
+// Eetwens & Allergie
+Ref: EetwensPerGezin.GezinId > Gezin.Id
+Ref: EetwensPerGezin.EetwensId > Eetwens.Id
+Ref: AllergiePerPersoon.PersoonId > Persoon.Id
+Ref: AllergiePerPersoon.AllergieId > Allergie.Id
 
-Ref: voedselpakketten.klant_id > klanten.id
+// Product relaties
+Ref: Product.CategorieId > Categorie.Id
 
-Ref: voedselpakket_producten.voedselpakket_id > voedselpakketten.id
-Ref: voedselpakket_producten.product_id > producten.id
+// Leverancier & Magazijn
+Ref: ProductPerLeverancier.LeverancierId > Leverancier.Id
+Ref: ProductPerLeverancier.ProductId > Product.Id
+Ref: ProductPerMagazijn.ProductId > Product.Id
+Ref: ProductPerMagazijn.MagazijnId > Magazijn.Id
 
-Ref: klant_wensen.klant_id > klanten.id
-Ref: klant_wensen.wens_id > wensen.id
-
-Ref: klant_allergenen.klant_id > klanten.id
-Ref: klant_allergenen.allergie_id > allergenen.id
+// Voedselpakket
+Ref: Voedselpakket.GezinId > Gezin.Id
+Ref: ProductPerVoedselpakket.VoedselpakketId > Voedselpakket.Id
+Ref: ProductPerVoedselpakket.ProductId > Product.Id

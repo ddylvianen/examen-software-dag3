@@ -21,7 +21,7 @@ BEGIN
     JOIN Magazijn m
         ON m.Id = ppm.MagazijnId
     WHERE
-        p.categorieId = p_categorieId
+        p.categorieId = p_categorieid
     ORDER BY
         p.Naam ASC;
 END ??

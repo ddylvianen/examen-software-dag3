@@ -8,11 +8,12 @@
             </h1>
 
             <div class="flex gap-2">
-                <form action="{{ route('voorraad.ProductenPerCategorie') }}" method="GET">
+                <form action="{{ route('voorraad.ProductenPerCategorie') }}" method="POST">
+                    @METHOD("GET")
                     @csrf
                     <select
                         name="categorieid"
-                        class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
+                        class="rounded-md border border-gray-300 py-2 text-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
                     >
                         <option value="">Selecteer Categorie</option>
                         @forelse ($categorieen as $categorie)
@@ -62,7 +63,9 @@
                                 class="inline-flex items-center justify-center rounded-md bg-blue-100 p-2 text-blue-600 hover:bg-blue-200"
                                 title="Bekijk details"
                             >
-                                📄
+                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 .087.586l2.977-7.937A1 1 0 0 1 6 10h12V9a2 2 0 0 0-2-2h-4.532l-1.9-2.28A2 2 0 0 0 8.032 4H4Zm2.693 8H6.5l-3 8H18l3-8H6.693Z" clip-rule="evenodd"/>
+                                </svg>
                             </a>
                         </td>
                     </tr>

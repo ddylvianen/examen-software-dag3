@@ -11,4 +11,11 @@ class VoorraadModel extends Model
     {
         return DB::select('CALL SP_GetAllProducten');
     }
+
+    Static public function SP_GetAllCategorieen()
+    {
+        return DB::select('CALL SP_GetAllCategorieen');
+    }
+
+    // where('categorieid', $categorieid)->get();
 }

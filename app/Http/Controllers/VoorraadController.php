@@ -13,9 +13,24 @@ class VoorraadController extends Controller
     public function index()
     {
         $voorraden = Voorraad::SP_GetAllProducten();
+        $categorieen = Voorraad::SP_GetAllCategorieen();
 
         return view('voorraad.index', [
-            'voorraden' => $voorraden
+            'voorraden' => $voorraden,
+            'categorieen' => $categorieen
+        ]);
+    }
+
+    public function ProductenPerCategorie(Request $request)
+    {
+        $categorieid = $request->query('categorieid');
+        
+        $voorraden = Voorraad::SP_GetProductenPerCategorie($categorieid);
+        $categorieen = Voorraad::SP_GetAllCategorieen();
+
+        return view('voorraad.index', [
+            'voorraden' => $voorraden,
+            'categorieen' => $categorieen
         ]);
     }
 

@@ -14,6 +14,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/voorraad', [VoorraadController::class, 'index'])->name('voorraad.index');
+Route::post('/voorraad', [VoorraadController::class, 'ProductenPerCategorie'])->name('voorraad.ProductenPerCategorie');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

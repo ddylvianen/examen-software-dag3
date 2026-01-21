@@ -8,21 +8,26 @@
             </h1>
 
             <div class="flex gap-2">
-                <select
-                    name="categorie"
-                    class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
-                >
-                    <option value="">Selecteer Categorie</option>
-                    {{-- @foreach ($categorieen as $categorie)
-                        <option value="{{ $categorie->id }}">{{ $categorie->naam }}</option>
-                    @endforeach --}}
-                </select>
+                <form action="{{ route('voorraad.ProductenPerCategorie') }}">
+                    <select
+                        name="categorie"
+                        class="rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
+                    >
+                        <option value="">Selecteer Categorie</option>
+                        @forelse ($categorieen as $categorie)
+                            <option value="{{ $categorie->id }}">{{ $categorie->naam }}</option>
+                        @empty
+                            <option value="">Nog geen categorieen geregistreerd</option>
+                        @endforelse
+                    </select>
 
-                <button
-                    class="rounded-md bg-gray-600 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-500"
-                >
-                    Toon Voorraad
-                </button>
+                    <button
+                        type="submit"
+                        class="rounded-md bg-gray-600 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-500"
+                    >
+                        Toon Voorraad
+                    </button>
+                </form>
             </div>
         </div>
 

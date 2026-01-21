@@ -7,9 +7,8 @@ use App\Models\VoorraadModel as Voorraad;
 
 class VoorraadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public $voorraden = [];
+
     public function index()
     {
         $voorraden = Voorraad::SP_GetAllProducten();
@@ -25,7 +24,12 @@ class VoorraadController extends Controller
     {
         $categorieid = $request->query('categorieid');
         
-        $voorraden = Voorraad::SP_GetProductenPerCategorie($categorieid);
+        if ($categorieid) {
+            $voorraden = Voorraad::SP_GetProductenPerCategorie($categorieid);
+        } else {
+            $voorraden = Voorraad::SP_GetAllProducten();
+        }
+        
         $categorieen = Voorraad::SP_GetAllCategorieen();
 
         return view('voorraad.index', [

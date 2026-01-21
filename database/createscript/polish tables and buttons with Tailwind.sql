@@ -1,1 +1,0 @@
-polish tables and buttons with Tailwind

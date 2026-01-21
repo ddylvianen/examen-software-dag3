@@ -3,9 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\VoorraadController;
 use Illuminate\Support\Facades\Route;
-
-
 
 // Role-based dashboards
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -13,6 +12,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('welcome');
     });
 });
+
+Route::get('/voorraad', [VoorraadController::class, 'index'])->name('voorraad.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -15,6 +15,12 @@
                     <x-nav-link href="/" :active="request()->is('/')">
                         {{ __('Home') }}
                     </x-nav-link>
+
+                    @if (Auth::user()->hasRole('Manager', 'Medewerker'))
+                        <x-nav-link href="{{ route('voorraad.index') }}" :active="request()->is('/voorraad')">
+                            {{ __('Overzicht Productvoorraden') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

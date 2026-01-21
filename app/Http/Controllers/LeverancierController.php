@@ -62,7 +62,7 @@ class LeverancierController extends Controller
         // Valideer de invoer
         $data = $request->validate([
             'ProductId' => 'required|integer',
-            'houdbaarheidsdatum' => 'required|date',
+            'houdbaarheidsdatum' => 'required|date|after_or_equal:today',
         ]);
 
 

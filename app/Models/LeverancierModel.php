@@ -59,7 +59,7 @@ class LeverancierModel extends Model
      * @param array $data Array met 'ProductId' en 'houdbaarheidsdatum'.
      * @return int Aantal beïnvloede rijen (1 bij succes), of -1 bij fout.
      */
-    public static function updateproduct($data): int{a
+    public static function updateproduct($data): int{
         try {
             Log::info("\n\nProductdatums bijwerken in database... met ID: " . $data['ProductId'] . "\n");
             // Voer de Stored Procedure uit zonder parameters

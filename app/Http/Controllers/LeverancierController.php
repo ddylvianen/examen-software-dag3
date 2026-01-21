@@ -22,10 +22,9 @@ class LeverancierController extends Controller
         $data = $request->validate([
             'leveranciertype' => 'nullable|string',
         ]);
-        
+
         // Haal het geselecteerde leveranciertype op (of leeg als niet ingesteld)
         $leverancierType = $data['leveranciertype'] ?? '';
-
         // Haal de gefilterde leveranciers en alle types op via het model
         $leveranciers = LeverancierModel::getallleveranciersbytype($leverancierType);
         $leverancierTypes = LeverancierModel::getallleveranciertype();
@@ -44,7 +43,7 @@ class LeverancierController extends Controller
     {
         // Haal product op via ID
         $product = LeverancierModel::GetProductById($id);
-        
+
         // Controleer of product bestaat
         if (!$product) {
             return redirect()->route('leveranciers.index')->with('error', 'Product niet gevonden.');

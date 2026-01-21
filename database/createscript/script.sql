@@ -1,5 +1,5 @@
 SET FOREIGN_KEY_CHECKS = 0;
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO,ALLOW_INVALID_DATES";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -80,198 +80,181 @@ CREATE TABLE users (
 -- Allergie
 -- --------------------------------------------------------
 CREATE TABLE Allergie (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    Naam VARCHAR(100) NOT NULL,
-    Omschrijving VARCHAR(255) NULL,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
+    Naam VARCHAR(255) NOT NULL,
+    Omschrijving VARCHAR(255) NOT NULL,
     AnafylactischRisico VARCHAR(50) NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Rol
 -- --------------------------------------------------------
 CREATE TABLE Rol (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    Naam VARCHAR(100) NOT NULL,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
+    Naam VARCHAR(255) NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Categorie
 -- --------------------------------------------------------
 CREATE TABLE Categorie (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    Naam VARCHAR(100) NOT NULL,
-    Omschrijving VARCHAR(255) NULL,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
+    Naam VARCHAR(255) NOT NULL,
+    Omschrijving VARCHAR(255) NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Contact
 -- --------------------------------------------------------
 CREATE TABLE Contact (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     Straat VARCHAR(255) NOT NULL,
-    Huisnummer VARCHAR(20) NOT NULL,
-    Toevoeging VARCHAR(20) NULL,
+    Huisnummer INT NOT NULL,
+    Toevoeging VARCHAR(10) NULL,
     Postcode VARCHAR(10) NOT NULL,
-    Woonplaats VARCHAR(100) NOT NULL,
-    Email VARCHAR(255) NULL,
-    Mobiel VARCHAR(20) NULL,
+    Woonplaats VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Mobiel VARCHAR(20) NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Eetwens
 -- --------------------------------------------------------
 CREATE TABLE Eetwens (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    Naam VARCHAR(100) NOT NULL,
-    Omschrijving VARCHAR(255) NULL,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
+    Naam VARCHAR(255) NOT NULL,
+    Omschrijving VARCHAR(255) NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Gezin
 -- --------------------------------------------------------
 CREATE TABLE Gezin (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     Naam VARCHAR(255) NOT NULL,
-    Code VARCHAR(20) NULL,
+    Code VARCHAR(50) NOT NULL,
     Omschrijving VARCHAR(255) NULL,
-    AantalVolwassenen INT NOT NULL DEFAULT 0,
-    AantalKinderen INT NOT NULL DEFAULT 0,
-    AantalBabys INT NOT NULL DEFAULT 0,
-    TotaalAantalPersonen INT NOT NULL DEFAULT 0,
+    AantalVolwassenen INT NOT NULL,
+    AantalKinderen INT NOT NULL,
+    AantalBabys INT NOT NULL,
+    TotaalAantalPersonen INT NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Leverancier
 -- --------------------------------------------------------
 CREATE TABLE Leverancier (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     Naam VARCHAR(255) NOT NULL,
-    ContactPersoon VARCHAR(255) NULL,
-    LeverancierNummer VARCHAR(50) NULL,
-    LeverancierType VARCHAR(50) NULL,
+    ContactPersoon VARCHAR(255) NOT NULL,
+    LeverancierNummer VARCHAR(50) NOT NULL,
+    LeverancierType VARCHAR(50) NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Magazijn
 -- --------------------------------------------------------
 CREATE TABLE Magazijn (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    Ontvangstdatum DATE NULL,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
+    Ontvangstdatum DATE NOT NULL,
     Uitleveringsdatum DATE NULL,
-    VerpakkingsEenheid VARCHAR(50) NULL,
-    Aantal INT NOT NULL DEFAULT 0,
+    VerpakkingsEenheid VARCHAR(50) NOT NULL,
+    Aantal INT NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Persoon
 -- --------------------------------------------------------
 CREATE TABLE Persoon (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     GezinId INT UNSIGNED NULL,
     Voornaam VARCHAR(255) NOT NULL,
     Tussenvoegsel VARCHAR(50) NULL,
     Achternaam VARCHAR(255) NOT NULL,
-    Geboortedatum DATE NULL,
-    TypePersoon VARCHAR(50) NULL,
-    IsVertegenwoordiger BIT(1) NOT NULL DEFAULT 0,
+    Geboortedatum DATE NOT NULL,
+    TypePersoon VARCHAR(50) NOT NULL,
+    IsVertegenwoordiger BIT NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_persoon_gezin FOREIGN KEY (GezinId) REFERENCES Gezin (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Add User FK now that Persoon exists
-ALTER TABLE users ADD CONSTRAINT fk_users_persoon FOREIGN KEY (PersoonId) REFERENCES Persoon (Id);
 
 -- --------------------------------------------------------
 -- Product
 -- --------------------------------------------------------
 CREATE TABLE Product (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     CategorieId INT UNSIGNED NOT NULL,
     Naam VARCHAR(255) NOT NULL,
     SoortAllergie VARCHAR(255) NULL,
-    Barcode VARCHAR(50) NULL,
-    Houdbaarheidsdatum DATE NULL,
+    Barcode VARCHAR(50) NOT NULL,
+    Houdbaarheidsdatum DATE NOT NULL,
     Omschrijving VARCHAR(255) NULL,
-    Status VARCHAR(50) NULL,
+    Status VARCHAR(50) NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_product_categorie FOREIGN KEY (CategorieId) REFERENCES Categorie (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Voedselpakket
 -- --------------------------------------------------------
 CREATE TABLE Voedselpakket (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     GezinId INT UNSIGNED NOT NULL,
     PakketNummer INT NOT NULL,
-    DatumSamenstelling DATETIME NULL,
+    DatumSamenstelling DATETIME NOT NULL,
     DatumUitgifte DATETIME NULL,
-    Status VARCHAR(50) NULL,
+    Status VARCHAR(50) NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_voedselpakket_gezin FOREIGN KEY (GezinId) REFERENCES Gezin (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -280,119 +263,95 @@ CREATE TABLE Voedselpakket (
 -- --------------------------------------------------------
 
 CREATE TABLE AllergiePerPersoon (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     PersoonId INT UNSIGNED NOT NULL,
     AllergieId INT UNSIGNED NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_app_persoon FOREIGN KEY (PersoonId) REFERENCES Persoon (Id),
-    CONSTRAINT fk_app_allergie FOREIGN KEY (AllergieId) REFERENCES Allergie (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE RolPerGebruiker (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     GebruikerId INT UNSIGNED NOT NULL,
     RolId INT UNSIGNED NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_rpg_user FOREIGN KEY (GebruikerId) REFERENCES users (id),
-    CONSTRAINT fk_rpg_rol FOREIGN KEY (RolId) REFERENCES Rol (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ContactPerLeverancier (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     LeverancierId INT UNSIGNED NOT NULL,
     ContactId INT UNSIGNED NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_cpl_leverancier FOREIGN KEY (LeverancierId) REFERENCES Leverancier (Id),
-    CONSTRAINT fk_cpl_contact FOREIGN KEY (ContactId) REFERENCES Contact (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ContactPerGezin (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     GezinId INT UNSIGNED NOT NULL,
     ContactId INT UNSIGNED NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_cpg_gezin FOREIGN KEY (GezinId) REFERENCES Gezin (Id),
-    CONSTRAINT fk_cpg_contact FOREIGN KEY (ContactId) REFERENCES Contact (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE EetwensPerGezin (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     GezinId INT UNSIGNED NOT NULL,
     EetwensId INT UNSIGNED NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_epg_gezin FOREIGN KEY (GezinId) REFERENCES Gezin (Id),
-    CONSTRAINT fk_epg_eetwens FOREIGN KEY (EetwensId) REFERENCES Eetwens (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ProductPerVoedselpakket (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     VoedselpakketId INT UNSIGNED NOT NULL,
     ProductId INT UNSIGNED NOT NULL,
-    AantalProductEenheden INT NOT NULL DEFAULT 0,
+    AantalProductEenheden INT NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_ppv_voedselpakket FOREIGN KEY (VoedselpakketId) REFERENCES Voedselpakket (Id),
-    CONSTRAINT fk_ppv_product FOREIGN KEY (ProductId) REFERENCES Product (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ProductPerLeverancier (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     LeverancierId INT UNSIGNED NOT NULL,
     ProductId INT UNSIGNED NOT NULL,
-    DatumAangeleverd DATE NULL,
+    DatumAangeleverd DATE NOT NULL,
     DatumEerstVolgendeLevering DATE NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_ppl_leverancier FOREIGN KEY (LeverancierId) REFERENCES Leverancier (Id),
-    CONSTRAINT fk_ppl_product FOREIGN KEY (ProductId) REFERENCES Product (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ProductPerMagazijn (
-    Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    Id INT UNSIGNED NOT NULL PRIMARY KEY,
     ProductId INT UNSIGNED NOT NULL,
     MagazijnId INT UNSIGNED NOT NULL,
-    Locatie VARCHAR(100) NULL,
+    Locatie VARCHAR(255) NOT NULL,
 
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
-    DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (Id),
-    CONSTRAINT fk_ppm_product FOREIGN KEY (ProductId) REFERENCES Product (Id),
-    CONSTRAINT fk_ppm_magazijn FOREIGN KEY (MagazijnId) REFERENCES Magazijn (Id)
+    DatumAangemaakt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DatumGewijzigd DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -409,9 +368,7 @@ INSERT INTO Allergie (Id, Naam, Omschrijving, AnafylactischRisico) VALUES
 (6, 'Soja', 'Allergisch voor soja', 'Zeerlaag');
 
 INSERT INTO Rol (Id, Naam) VALUES
-(1, 'Manager'),
-(2, 'Medewerker'),
-(3, 'Vrijwilliger');
+(1, 'Manager'), (2, 'Medewerker'), (3, 'Vrijwilliger');
 
 INSERT INTO Categorie (Id, Naam, Omschrijving) VALUES
 (1, 'AGF', 'Aardappelen groente en fruit'),
@@ -425,19 +382,19 @@ INSERT INTO Categorie (Id, Naam, Omschrijving) VALUES
 (9, 'BVH', 'Baby, verzorging en hygiëne');
 
 INSERT INTO Contact (Id, Straat, Huisnummer, Toevoeging, Postcode, Woonplaats, Email, Mobiel) VALUES
-(1, 'Prinses Irenestraat', '12', 'A', '5271TH', 'Maaskantje', 'j.van.zevenhuizen@gmail.com', '+31 623456123'),
-(2, 'Gibraltarstraat', '234', NULL, '5271TJ', 'Maaskantje', 'a.bergkamp@hotmail.com', '+31 623456123'),
-(3, 'Der Kinderenstraat', '456', 'Bis', '5271TH', 'Maaskantje', 's.van.de.heuvel@gmail.com', '+31 623456123'),
-(4, 'Nachtegaalstraat', '233', 'A', '5271TJ', 'Maaskantje', 'e.scherder@gmail.com', '+31 623456123'),
-(5, 'Bertram Russellstraat', '45', NULL, '5271TH', 'Maaskantje', 'f.de.jong@hotmail.com', '+31 623456123'),
-(6, 'Leonardo Da VinciHof', '34', NULL, '5271ZE', 'Maaskantje', 'h.van.der.berg@gmail.com', '+31 623456123'),
-(7, 'Siegfried Knutsenlaan', '234', NULL, '5271ZE', 'Maaskantje', 'r.ter.weijden@ah.nl', '+31 623456123'),
-(8, 'Theo de Bokstraat', '256', NULL, '5271ZH', 'Maaskantje', 'l.pastoor@gmail.com', '+31 623456123'),
-(9, 'Meester van Leerhof', '2', 'A', '5271ZH', 'Maaskantje', 'm.yazidi@gemeenteutrecht.nl', '+31 623456123'),
-(10, 'Van Wemelenplantsoen', '300', NULL, '5271TH', 'Maaskantje', 'b.van.driel@gmail.com', '+31 623456123'),
-(11, 'Terlingenhof', '20', NULL, '5271TH', 'Maaskantje', 'j.pastorius@gmail.com', '+31 623456356'),
-(12, 'Veldhoen', '31', NULL, '5271ZE', 'Maaskantje', 's.dollaard@gmail.com', '+31 623452314'),
-(13, 'ScheringaDreef', '37', NULL, '5271ZE', 'Vught', 'j.blokker@gemeentevught.nl', '+31 623452314');
+(1, 'Prinses Irenestraat', 12, 'A', '5271TH', 'Maaskantje', 'j.van.zevenhuizen@gmail.com', '+31 623456123'),
+(2, 'Gibraltarstraat', 234, NULL, '5271TJ', 'Maaskantje', 'a.bergkamp@hotmail.com', '+31 623456123'),
+(3, 'Der Kinderenstraat', 456, 'Bis', '5271TH', 'Maaskantje', 's.van.de.heuvel@gmail.com', '+31 623456123'),
+(4, 'Nachtegaalstraat', 233, 'A', '5271TJ', 'Maaskantje', 'e.scherder@gmail.com', '+31 623456123'),
+(5, 'Bertram Russellstraat', 45, NULL, '5271TH', 'Maaskantje', 'f.de.jong@hotmail.com', '+31 623456123'),
+(6, 'Leonardo Da VinciHof', 34, NULL, '5271ZE', 'Maaskantje', 'h.van.der.berg@gmail.com', '+31 623456123'),
+(7, 'Siegfried Knutsenlaan', 234, NULL, '5271ZE', 'Maaskantje', 'r.ter.weijden@ah.nl', '+31 623456123'),
+(8, 'Theo de Bokstraat', 256, NULL, '5271ZH', 'Maaskantje', 'l.pastoor@gmail.com', '+31 623456123'),
+(9, 'Meester van Leerhof', 2, 'A', '5271ZH', 'Maaskantje', 'm.yazidi@gemeenteutrecht.nl', '+31 623456123'),
+(10, 'Van Wemelenplantsoen', 300, NULL, '5271TH', 'Maaskantje', 'b.van.driel@gmail.com', '+31 623456123'),
+(11, 'Terlingenhof', 20, NULL, '5271TH', 'Maaskantje', 'j.pastorius@gmail.com', '+31 623456356'),
+(12, 'Veldhoen', 31, NULL, '5271ZE', 'Maaskantje', 's.dollaard@gmail.com', '+31 623452314'),
+(13, 'ScheringaDreef', 37, NULL, '5271ZE', 'Vught', 'j.blokker@gemeentevught.nl', '+31 623452314');
 
 INSERT INTO Eetwens (Id, Naam, Omschrijving) VALUES
 (1, 'GeenVarken', 'Geen Varkensvlees'),
@@ -559,134 +516,21 @@ INSERT INTO Voedselpakket (Id, GezinId, PakketNummer, DatumSamenstelling, DatumU
 (5, 2, 5, '2026-01-18', '2026-01-20', 'Uitgereikt'),
 (6, 2, 6, '2026-01-08', NULL, 'NietUitgereikt');
 
-INSERT INTO AllergiePerPersoon (Id, PersoonId, AllergieId) VALUES
-(1, 4, 1),
-(2, 5, 2),
-(3, 6, 3),
-(4, 7, 4),
-(5, 8, 3),
-(6, 9, 2),
-(7, 5, 8),
-(12, 2, 9),
-(13, 4, 10),
-(14, 1, 11),
-(15, 3, 12),
-(16, 5, 13),
-(17, 1, 14),
-(18, 2, 15),
-(19, 4, 16),
-(20, 4, 4);
+INSERT INTO AllergiePerPersoon (Id, PersoonId, AllergieId) VALUES (1,4,1),(2,5,2),(3,6,3),(4,7,4),(5,8,3),(6,9,2),(7,10,5),(8,12,2),(9,13,4),(10,14,1),(11,15,3),(12,16,5),(13,17,1),(14,17,2),(15,18,4),(16,19,4);
 
-INSERT INTO RolPerGebruiker (Id, GebruikerId, RolId) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3);
+INSERT INTO RolPerGebruiker (Id, GebruikerId, RolId) VALUES (1,1,1),(2,2,2),(3,3,3);
 
-INSERT INTO ContactPerLeverancier (Id, LeverancierId, ContactId) VALUES
-(1, 1, 7),
-(2, 2, 8),
-(3, 3, 9),
-(4, 4, 10),
-(5, 5, 6),
-(6, 6, 7),
-(7, 7, 8);
+INSERT INTO ContactPerLeverancier (Id, LeverancierId, ContactId) VALUES (1,1,7),(2,2,8),(3,3,9),(4,4,10),(5,6,11),(6,7,12),(7,8,13);
 
-INSERT INTO ContactPerGezin (Id, GezinId, ContactId) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 5),
-(6, 6, 6);
+INSERT INTO ContactPerGezin (Id, GezinId, ContactId) VALUES (1,1,1),(2,2,2),(3,3,3),(4,4,4),(5,5,5),(6,6,6);
 
-INSERT INTO EetwensPerGezin (Id, GezinId, EetwensId) VALUES
-(1, 1, 2),
-(2, 2, 4),
-(3, 3, 4),
-(4, 4, 3),
-(5, 5, 2);
+INSERT INTO EetwensPerGezin (Id, GezinId, EetwensId) VALUES (1,1,2),(2,2,4),(3,3,4),(4,4,3),(5,5,2);
 
-INSERT INTO ProductPerVoedselpakket (Id, VoedselpakketId, ProductId, AantalProductEenheden) VALUES
-(1, 1, 7, 1),
-(2, 1, 8, 2),
-(3, 1, 9, 1),
-(4, 2, 12, 1),
-(5, 2, 13, 2),
-(6, 2, 6, 2),
-(7, 1, 7, 3),
-(8, 2, 6, 2),
-(9, 1, 7, 3),
-(10, 1, 8, 3),
-(11, 1, 9, 4),
-(12, 4, 20, 1),
-(13, 4, 19, 1),
-(14, 4, 21, 1),
-(15, 5, 24, 1),
-(16, 5, 25, 1),
-(17, 5, 26, 1),
-(18, 6, 27, 1);
+INSERT INTO ProductPerVoedselpakket (Id, VoedselpakketId, ProductId, AantalProductEenheden) VALUES (1,1,7,1),(2,1,8,2),(3,1,9,1),(4,2,12,1),(5,2,13,2),(6,2,14,1),(7,3,3,1),(8,3,4,1),(9,4,20,1),(10,4,19,1),(11,4,21,1),(12,5,24,1),(13,5,25,1),(14,5,26,1),(15,6,27,1);
 
-INSERT INTO ProductPerLeverancier (Id, LeverancierId, ProductId, DatumAangeleverd, DatumEerstVolgendeLevering) VALUES
-(1, 4, 1, '2026-01-12', '2026-01-15'),
-(2, 4, 2, '2026-01-02', '2026-01-05'),
-(3, 2, 3, '2026-01-16', '2026-01-18'),
-(4, 1, 4, '2026-01-08', '2026-01-11'),
-(5, 4, 5, '2026-01-06', '2026-01-10'),
-(6, 1, 6, '2026-01-12', '2026-01-15'),
-(7, 4, 7, '2026-01-20', '2026-01-21'),
-(8, 4, 8, '2026-01-02', '2026-01-08'),
-(9, 4, 9, '2026-01-04', '2026-01-09'),
-(10, 3, 10, '2026-01-07', '2026-01-11'),
-(11, 3, 11, '2026-01-01', '2026-01-06'),
-(12, 3, 12, '2026-01-18', '2026-01-20'),
-(13, 3, 13, '2026-01-19', '2026-01-20'),
-(14, 2, 14, '2026-01-10', '2026-01-12'),
-(15, 2, 15, '2026-01-13', '2026-01-15'),
-(16, 1, 16, '2026-01-18', '2026-01-21'),
-(17, 1, 17, '2026-01-11', '2026-01-15'),
-(18, 1, 18, '2026-01-02', '2026-01-06'),
-(19, 1, 19, '2026-01-09', '2026-01-12'),
-(20, 4, 20, '2026-01-03', '2026-01-06'),
-(21, 2, 21, '2026-01-02', '2026-01-08'),
-(22, 1, 22, '2026-01-16', '2026-01-19'),
-(23, 3, 23, '2026-01-14', '2026-01-18'),
-(24, 3, 24, '2026-01-07', '2026-01-15'),
-(25, 1, 25, '2026-01-17', '2026-01-21'),
-(26, 2, 26, '2026-01-05', '2026-01-12'),
-(27, 1, 27, '2026-01-07', '2026-01-10'),
-(28, 2, 28, '2026-01-06', '2026-01-09'),
-(29, 3, 29, '2026-01-08', '2026-01-11');
+INSERT INTO ProductPerLeverancier (Id, LeverancierId, ProductId, DatumAangeleverd, DatumEerstVolgendeLevering) VALUES (1,4,1,'2026-01-12','2026-01-15'),(2,4,2,'2026-01-02','2026-01-05'),(3,2,3,'2026-01-16','2026-01-18'),(4,1,4,'2026-01-08','2026-01-11'),(5,4,5,'2026-01-06','2026-01-10'),(6,1,6,'2026-01-12','2026-01-15'),(7,4,7,'2026-01-20','2026-01-21'),(8,4,8,'2026-01-02','2026-01-08'),(9,4,9,'2026-01-04','2026-01-09'),(10,3,10,'2026-01-07','2026-01-11'),(11,3,11,'2026-01-01','2026-01-06'),(12,3,12,'2026-01-18','2026-01-20'),(13,3,13,'2026-01-19','2026-01-20'),(14,2,14,'2026-01-10','2026-01-12'),(15,2,15,'2026-01-13','2026-01-15'),(16,1,16,'2026-01-18','2026-01-21'),(17,1,17,'2026-01-11','2026-01-15'),(18,1,18,'2026-01-02','2026-01-06'),(19,1,19,'2026-01-09','2026-01-12'),(20,4,20,'2026-01-03','2026-01-06'),(21,2,21,'2026-01-02','2026-01-08'),(22,1,22,'2026-01-16','2026-01-19'),(23,3,23,'2026-01-14','2026-01-18'),(24,3,24,'2026-01-07','2026-01-15'),(25,1,25,'2026-01-17','2026-01-21'),(26,2,26,'2026-01-05','2026-01-12'),(27,1,27,'2026-01-07','2026-01-10'),(28,2,28,'2026-01-06','2026-01-09'),(29,3,29,'2026-01-08','2026-01-11');
 
-INSERT INTO ProductPerMagazijn (Id, ProductId, MagazijnId, Locatie) VALUES
-(1, 1, 1, 'Berlicum'),
-(2, 2, 2, 'Rosmalen'),
-(3, 3, 3, 'Berlicum'),
-(4, 4, 4, 'Berlicum'),
-(5, 5, 5, 'Rosmalen'),
-(6, 6, 6, 'Berlicum'),
-(7, 7, 7, 'Rosmalen'),
-(8, 8, 8, 'Sint-MichelsGestel'),
-(9, 9, 9, 'Sint-MichelsGestel'),
-(10, 10, 10, 'Middelrode'),
-(11, 11, 11, 'Middelrode'),
-(12, 12, 12, 'Middelrode'),
-(13, 13, 13, 'Schijndel'),
-(14, 14, 14, 'Schijndel'),
-(15, 15, 15, 'Gemonde'),
-(16, 16, 16, 'Gemonde'),
-(17, 17, 17, 'Gemonde'),
-(18, 18, 18, 'Gemonde'),
-(19, 19, 19, 'Den Bosch'),
-(20, 20, 20, 'Den Bosch'),
-(21, 21, 21, 'Den Bosch'),
-(22, 22, 22, 'Heeswijk Dinther'),
-(23, 23, 23, 'Heeswijk Dinther'),
-(24, 24, 24, 'Heeswijk Dinther'),
-(25, 25, 25, 'Vught'),
-(26, 26, 26, 'Vught'),
-(27, 27, 27, 'Vught'),
-(28, 28, 28, 'Vught'),
-(29, 29, 29, 'Vught');
+INSERT INTO ProductPerMagazijn (Id, ProductId, MagazijnId, Locatie) VALUES (1,1,1,'Berlicum'),(2,2,2,'Rosmalen'),(3,3,3,'Berlicum'),(4,4,4,'Berlicum'),(5,5,5,'Rosmalen'),(6,6,6,'Berlicum'),(7,7,7,'Rosmalen'),(8,8,8,'Sint-MichelsGestel'),(9,9,9,'Sint-MichelsGestel'),(10,10,10,'Middelrode'),(11,11,11,'Middelrode'),(12,12,12,'Middelrode'),(13,13,13,'Schijndel'),(14,14,14,'Schijndel'),(15,15,15,'Gemonde'),(16,16,16,'Gemonde'),(17,17,17,'Gemonde'),(18,18,18,'Gemonde'),(19,19,19,'Den Bosch'),(20,20,20,'Den Bosch'),(21,21,21,'Den Bosch'),(22,22,22,'Heeswijk Dinther'),(23,23,23,'Heeswijk Dinther'),(24,24,24,'Heeswijk Dinther'),(25,25,25,'Vught'),(26,26,26,'Vught'),(27,27,27,'Vught'),(28,28,28,'Vught'),(29,29,29,'Vught');
 
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;

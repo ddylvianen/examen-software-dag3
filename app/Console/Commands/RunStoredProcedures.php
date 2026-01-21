@@ -18,7 +18,7 @@ class RunStoredProcedures extends Command
             // Leveranciers
             'leveranciers/SP_GetAllLeverancierTypes.sql',
             'leveranciers/SP_Getleveranciers.sql',
-            'leveranciers/SP_Getleverancierbyid.sql',
+            'leveranciers/SP_GetLeverancierbyid.sql',
             'leveranciers/SP_GetProductById.sql',
             'leveranciers/SP_GetProductPerLeverancierById.sql',
             'leveranciers/SP_Updateproduct.sql',

@@ -68,9 +68,19 @@ class User extends Authenticatable
     {
         // Prefer roles table (script.sql). Fallback to legacy users.role (migrations/tests).
         try {
+            // Manager has access to everything
+            if ($this->rollen()->where('Naam', 'Manager')->exists()) {
+                return true;
+            }
+
             return $this->rollen()->whereIn('Naam', $roleNames)->exists();
         } catch (\Throwable $e) {
             $current = $this->getAttribute('role');
+
+            if ($current === 'Manager') {
+                return true;
+            }
+
             return $current !== null && in_array($current, $roleNames, true);
         }
     }

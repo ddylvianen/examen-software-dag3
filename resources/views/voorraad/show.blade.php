@@ -3,7 +3,7 @@
         <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
 
             <!-- Titel -->
-            <h1 class="text-2xl font-semibold text-green-600 underline mb-6">
+            <h1 class="text-2xl font-semibold text-white underline mb-6">
                 Product Details {{ $product->productnaam }}
             </h1>
 

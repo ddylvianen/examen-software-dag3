@@ -23,6 +23,11 @@
                             </x-nav-link>
                         @endif
                     @endauth
+                    @if (Auth::user()->hasRole('Manager', 'Medewerker'))
+                        <x-nav-link href="{{ route('voorraad.index') }}" :active="request()->is('/voorraad')">
+                            {{ __('Overzicht Productvoorraden') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -99,6 +104,11 @@
                     </x-responsive-nav-link>
                 @endif
             @endauth
+            @if (Auth::user()->hasRole('Manager', 'Medewerker'))
+                <x-responsive-nav-link href="{{ route('voorraad.index') }}" :active="request()->is('/voorraad')">
+                    {{ __('Overzicht Productvoorraden') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

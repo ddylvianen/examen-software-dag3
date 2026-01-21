@@ -14,7 +14,6 @@
                     <div>
                         <label class="block font-semibold mb-1">Productnaam</label>
                         <input
-                            required
                             type="text"
                             name="Productnaam"
                             value="{{ $product->productnaam }}"
@@ -25,7 +24,6 @@
                     <div>
                         <label class="block font-semibold mb-1">Houdbaarheidsdatum</label>
                         <input
-                            required
                             type="date"
                             name="Houdbaarheidsdatum"
                             value="{{ $product->houdbaarheidsdatum }}"
@@ -36,7 +34,6 @@
                     <div>
                         <label class="block font-semibold mb-1">Barcode</label>
                         <input
-                            required
                             type="text"
                             name="Barcode"
                             value="{{ $product->barcode }}"
@@ -70,7 +67,6 @@
                     <div>
                         <label class="block font-semibold mb-1">Ontvangstdatum</label>
                         <input
-                            required
                             type="date"
                             name="Ontvangstdatum"
                             value="{{ $product->ontvangstdatum }}"
@@ -81,7 +77,6 @@
                     <div>
                         <label class="block font-semibold mb-1">Aantal uitgeleverde producten</label>
                         <input
-                            required 
                             type="number"
                             class="w-full rounded-lg border border-gray-300 px-4 py-2 bg-white"                        
                             name="Uitgeleverd" 
@@ -92,7 +87,6 @@
                     <div>
                         <label class="block font-semibold mb-1">Uitleveringsdatum</label>
                         <input
-                            required
                             type="date"
                             name="Uitleveringsdatum"
                             value="{{ $product->uitleveringsdatum }}"
@@ -103,7 +97,6 @@
                     <div>
                         <label class="block font-semibold mb-1">Aantal op voorraad</label>
                         <input
-                            required 
                             type="number" 
                             class="w-full rounded-lg border border-gray-300 px-4 py-2 bg-white"
                             name="Aantal" 

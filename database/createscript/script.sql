@@ -74,7 +74,7 @@ CREATE TABLE users (
 
     PRIMARY KEY (id),
     UNIQUE KEY users_email_unique (email)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Allergie
@@ -90,7 +90,7 @@ CREATE TABLE Allergie (
     DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Rol
@@ -104,7 +104,7 @@ CREATE TABLE Rol (
     DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Categorie
@@ -119,7 +119,7 @@ CREATE TABLE Categorie (
     DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Contact
@@ -139,7 +139,7 @@ CREATE TABLE Contact (
     DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Eetwens
@@ -154,7 +154,7 @@ CREATE TABLE Eetwens (
     DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Gezin
@@ -174,7 +174,7 @@ CREATE TABLE Gezin (
     DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Leverancier
@@ -191,7 +191,7 @@ CREATE TABLE Leverancier (
     DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Magazijn
@@ -208,7 +208,7 @@ CREATE TABLE Magazijn (
     DatumAangemaakt DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Persoon
@@ -229,7 +229,7 @@ CREATE TABLE Persoon (
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id),
     CONSTRAINT fk_persoon_gezin FOREIGN KEY (GezinId) REFERENCES Gezin (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Add User FK now that Persoon exists
 ALTER TABLE users ADD CONSTRAINT fk_users_persoon FOREIGN KEY (PersoonId) REFERENCES Persoon (Id);
@@ -253,7 +253,7 @@ CREATE TABLE Product (
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id),
     CONSTRAINT fk_product_categorie FOREIGN KEY (CategorieId) REFERENCES Categorie (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 -- Voedselpakket
@@ -272,7 +272,7 @@ CREATE TABLE Voedselpakket (
     DatumGewijzigd DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     PRIMARY KEY (Id),
     CONSTRAINT fk_voedselpakket_gezin FOREIGN KEY (GezinId) REFERENCES Gezin (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- --------------------------------------------------------
@@ -291,7 +291,7 @@ CREATE TABLE AllergiePerPersoon (
     PRIMARY KEY (Id),
     CONSTRAINT fk_app_persoon FOREIGN KEY (PersoonId) REFERENCES Persoon (Id),
     CONSTRAINT fk_app_allergie FOREIGN KEY (AllergieId) REFERENCES Allergie (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE RolPerGebruiker (
     Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -305,7 +305,7 @@ CREATE TABLE RolPerGebruiker (
     PRIMARY KEY (Id),
     CONSTRAINT fk_rpg_user FOREIGN KEY (GebruikerId) REFERENCES users (id),
     CONSTRAINT fk_rpg_rol FOREIGN KEY (RolId) REFERENCES Rol (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ContactPerLeverancier (
     Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -319,7 +319,7 @@ CREATE TABLE ContactPerLeverancier (
     PRIMARY KEY (Id),
     CONSTRAINT fk_cpl_leverancier FOREIGN KEY (LeverancierId) REFERENCES Leverancier (Id),
     CONSTRAINT fk_cpl_contact FOREIGN KEY (ContactId) REFERENCES Contact (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ContactPerGezin (
     Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -333,7 +333,7 @@ CREATE TABLE ContactPerGezin (
     PRIMARY KEY (Id),
     CONSTRAINT fk_cpg_gezin FOREIGN KEY (GezinId) REFERENCES Gezin (Id),
     CONSTRAINT fk_cpg_contact FOREIGN KEY (ContactId) REFERENCES Contact (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE EetwensPerGezin (
     Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -347,7 +347,7 @@ CREATE TABLE EetwensPerGezin (
     PRIMARY KEY (Id),
     CONSTRAINT fk_epg_gezin FOREIGN KEY (GezinId) REFERENCES Gezin (Id),
     CONSTRAINT fk_epg_eetwens FOREIGN KEY (EetwensId) REFERENCES Eetwens (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ProductPerVoedselpakket (
     Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -362,7 +362,7 @@ CREATE TABLE ProductPerVoedselpakket (
     PRIMARY KEY (Id),
     CONSTRAINT fk_ppv_voedselpakket FOREIGN KEY (VoedselpakketId) REFERENCES Voedselpakket (Id),
     CONSTRAINT fk_ppv_product FOREIGN KEY (ProductId) REFERENCES Product (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ProductPerLeverancier (
     Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -378,7 +378,7 @@ CREATE TABLE ProductPerLeverancier (
     PRIMARY KEY (Id),
     CONSTRAINT fk_ppl_leverancier FOREIGN KEY (LeverancierId) REFERENCES Leverancier (Id),
     CONSTRAINT fk_ppl_product FOREIGN KEY (ProductId) REFERENCES Product (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE ProductPerMagazijn (
     Id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -393,7 +393,7 @@ CREATE TABLE ProductPerMagazijn (
     PRIMARY KEY (Id),
     CONSTRAINT fk_ppm_product FOREIGN KEY (ProductId) REFERENCES Product (Id),
     CONSTRAINT fk_ppm_magazijn FOREIGN KEY (MagazijnId) REFERENCES Magazijn (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 -- --------------------------------------------------------

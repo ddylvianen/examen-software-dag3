@@ -63,10 +63,10 @@
 
             <!-- Buttons -->
             <div class="flex justify-between items-center mt-6">
-                {{-- <a href="{{ route('producten.edit', $product->id ?? 0) }}"
+                <a href="{{ route('voorraad.edit', $product->product_id) }}"
                 class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md font-semibold">
                     Wijzig
-                </a> --}}
+                </a>
 
                 <div class="space-x-2">
                     <a href="{{ url()->previous() }}"

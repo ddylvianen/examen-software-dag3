@@ -17,6 +17,11 @@ class VoorraadModel extends Model
         return DB::select('CALL SP_GetAllCategorieen');
     }
 
+    Static public function SP_GetAllMagazijnen()
+    {
+        return DB::select('CALL SP_GetAllMagazijnen()');
+    }
+
     Static public function SP_GetProductenPerCategorie($categorieid)
     {
         return DB::select('CALL SP_GetProductenPerCategorie(?)', [$categorieid]);

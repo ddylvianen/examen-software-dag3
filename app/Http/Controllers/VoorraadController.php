@@ -69,9 +69,15 @@ class VoorraadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, $id)
     {
-        //
+        $product = Voorraad::SP_GetProductenInfoById($id);
+        $magazijnen = Voorraad::SP_GetAllMagazijnen();
+
+        return view('voorraad.edit', [
+            'product' => $product,
+            'magazijnen' => $magazijnen
+        ]);
     }
 
     /**

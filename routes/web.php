@@ -15,6 +15,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('/voorraad', [VoorraadController::class, 'index'])->name('voorraad.index');
 Route::get('/voorraad/filter', [VoorraadController::class, 'ProductenPerCategorie'])->name('voorraad.ProductenPerCategorie');
+Route::get('/voorraad/{id}/show', [VoorraadController::class, 'show'])->name('voorraad.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

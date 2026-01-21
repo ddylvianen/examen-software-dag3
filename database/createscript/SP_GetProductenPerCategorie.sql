@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS SP_GetProductenPerCategorie;
+DROP PROCEDURE IF EXISTS SP_GetProductenPerCategorie;
 DELIMITER ??
 
 CREATE PROCEDURE SP_GetProductenPerCategorie(

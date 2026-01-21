@@ -21,4 +21,9 @@ class VoorraadModel extends Model
     {
         return DB::select('CALL SP_GetProductenPerCategorie(?)', [$categorieid]);
     }
+
+    Static public function SP_GetProductenInfoById($id)
+    {
+        return DB::selectOne('CALL SP_GetProductenInfoById(?)', [$id]);
+    }
 }

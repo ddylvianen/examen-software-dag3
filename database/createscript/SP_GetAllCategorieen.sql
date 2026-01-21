@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS SP_GetAllCategorieen;
+DROP PROCEDURE IF EXISTS SP_GetAllCategorieen;
 DELIMITER ??
 
 CREATE PROCEDURE SP_GetAllCategorieen()

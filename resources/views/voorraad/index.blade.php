@@ -59,7 +59,7 @@
                         <td class="px-6 py-4">{{ $voorraad->magazijn }}</td>
                         <td class="px-6 py-4 text-center">
                             <a
-                                href="#"
+                                href="{{ route('voorraad.show', $voorraad->product_id) }}"
                                 class="inline-flex items-center justify-center rounded-md bg-blue-100 p-2 text-blue-600 hover:bg-blue-200"
                                 title="Bekijk details"
                             >

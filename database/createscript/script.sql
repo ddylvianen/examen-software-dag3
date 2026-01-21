@@ -3,26 +3,53 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-USE Voedselbank2;
+USE voedselbank2;
 
 -- --------------------------------------------------------
 -- DROP TABLES
 -- --------------------------------------------------------
 
 DROP TABLE IF EXISTS
-    AllergiePerPersoon, RolPerGebruiker, ContactPerLeverancier, ContactPerGezin,
-    EetwensPerGezin, ProductPerVoedselpakket, ProductPerLeverancier, ProductPerMagazijn,
-    Allergie, Rol, Categorie, Contact, Eetwens, Gezin, Leverancier, Magazijn,
-    Persoon, Product, Voedselpakket, users,
-    VoedselpakketProducten, Voedselpakketten, LeveringProducten, Leveringen,
-    ProductAllergenen, ProductKenmerken, Producten, KlantAllergenen, KlantWensen,
-    Klanten, Gezinnen, Leveranciers, Contactpersonen, Allergenen, Wensen,
-    ProductCategorieen, Adressen, Users, Roles,
-    voedselpakket_producten, voedselpakketten, levering_producten, leveringen,
-    product_allergenen, product_kenmerken, producten, klant_allergenen, klant_wensen,
-    klanten, gezinnen, leveranciers, contactpersonen, allergenen, wensen,
-    product_categorieen, adressen, roles;
+    AllergiePerPersoon,
+    RolPerGebruiker,
+    ContactPerLeverancier,
+    ContactPerGezin,
+    EetwensPerGezin,
+    ProductPerVoedselpakket,
+    ProductPerLeverancier,
+    ProductPerMagazijn,
 
+    Allergie,
+    Rol,
+    Categorie,
+    Contact,
+    Eetwens,
+    Gezin,
+    Leverancier,
+    Magazijn,
+    Persoon,
+    Product,
+    Voedselpakket,
+    users,
+
+    voedselpakket_producten,
+    voedselpakketten,
+    levering_producten,
+    leveringen,
+    product_allergenen,
+    product_kenmerken,
+    producten,
+    klant_allergenen,
+    klant_wensen,
+    klanten,
+    gezinnen,
+    leveranciers,
+    contactpersonen,
+    allergenen,
+    wensen,
+    product_categorieen,
+    adressen,
+    roles;
 -- --------------------------------------------------------
 -- Users (Gebruiker)
 -- --------------------------------------------------------
@@ -39,7 +66,6 @@ CREATE TABLE users (
     remember_token VARCHAR(100) NULL,
     created_at TIMESTAMP NULL DEFAULT NULL,
     updated_at TIMESTAMP NULL DEFAULT NULL,
-
     -- System fields
     IsActief BIT(1) NOT NULL DEFAULT 1,
     Opmerking VARCHAR(255) NULL,
@@ -490,9 +516,9 @@ INSERT INTO Persoon (Id, GezinId, Voornaam, Tussenvoegsel, Achternaam, Geboorted
 (19, 6, 'Hanna', 'van der', 'Berg', '1999-09-09', 'Klant', 1);
 
 INSERT INTO users (id, PersoonId, name, email, password, IsIngelogd, Ingelogd, Uitgelogd, created_at, updated_at) VALUES
-(1, 1, 'Hans', 'hans@maaskantje.nl', '$2y$10$296RMzqzZqWENu9vyh6axed0DkfsuYkbvoI/AXVowCp/DL6zKiF0i', 1, '2026-01-13 17:03:06', NULL, NOW(), NOW()),
-(2, 2, 'Jan', 'jan@maaskantje.nl', '$2y$10$296RMzqzZqWENu9vyh6axed0DkfsuYkbvoI/AXVowCp/DL3zKiF6i', 0, '2026-01-18 15:13:23', '2026-01-18 15:23:46', NOW(), NOW()),
-(3, 3, 'Herman', 'herman@maaskantje.nl', '$2y$10$296RMzqzZqWENu9vyh6axed0DkfsuYkbvoI/AXVuwCp/DL9zKiF2i', 1, '2026-01-20 12:05:20', NULL, NOW(), NOW());
+(1, 1, 'Hans', 'hans@maaskantje.nl', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1, '2026-01-13 17:03:06', NULL, NOW(), NOW()),
+(2, 2, 'Jan', 'jan@maaskantje.nl', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 0, '2026-01-18 15:13:23', '2026-01-18 15:23:46', NOW(), NOW()),
+(3, 3, 'Herman', 'herman@maaskantje.nl', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1, '2026-01-20 12:05:20', NULL, NOW(), NOW());
 
 INSERT INTO Product (Id, CategorieId, Naam, SoortAllergie, Barcode, Houdbaarheidsdatum, Omschrijving, Status) VALUES
 (1, 1, 'Aardappel', NULL, '8719587321239', '2026-02-12', 'Kruimige aardappel', 'OpVoorraad'),

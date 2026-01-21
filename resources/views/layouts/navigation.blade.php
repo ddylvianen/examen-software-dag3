@@ -15,6 +15,12 @@
                     <x-nav-link href="/" :active="request()->is('/')">
                         {{ __('Home') }}
                     </x-nav-link>
+
+                    @if(Auth::check() && Auth::user()->hasRole('Manager', 'Medewerker'))
+                        <x-nav-link :href="route('leveranciers.index')" :active="request()->routeIs('leveranciers.index')">
+                            {{ __('Overzicht Leveranciers') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -70,6 +76,12 @@
             <x-responsive-nav-link href="/" :active="request()->is('/')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
+
+            @if(Auth::check() && Auth::user()->hasRole('Manager', 'Medewerker'))
+                <x-responsive-nav-link :href="route('leveranciers.index')" :active="request()->routeIs('leveranciers.index')">
+                    {{ __('Overzicht Leveranciers') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

@@ -63,7 +63,7 @@
 
         <div class="mt-6 md:mt-8 flex flex-col sm:flex-row justify-center sm:justify-end gap-2 sm:gap-3">
             <a href="{{ route('leveranciers.index') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition duration-150 ease-in-out text-sm md:text-base w-full sm:w-auto text-center">Terug</a>
-            <a href="{{ route('home') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition duration-150 ease-in-out text-sm md:text-base w-full sm:w-auto text-center">Home</a>
+            <a href="{{ route('welcome') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition duration-150 ease-in-out text-sm md:text-base w-full sm:w-auto text-center">Home</a>
         </div>
     </div>
 </x-app-layout>

@@ -35,11 +35,11 @@
                                 <div>
                                     <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Role</dt>
                                     <dd class="mt-1">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                            {{ $user->role === 'admin' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' : '' }}
-                                            {{ $user->role === 'worker' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' : '' }}
-                                            {{ $user->role === 'user' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : '' }}">
-                                            {{ ucfirst($user->role) }}
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                            {{ $user->rollen->contains('Naam', 'Manager') ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' : '' }}
+                                            {{ $user->rollen->contains('Naam', 'Medewerker') ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' : '' }}
+                                            {{ $user->rollen->contains('Naam', 'Vrijwilliger') ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : '' }}">
+                                            {{ $user->rollen->first()?->Naam ?? 'No Role' }}
                                         </span>
                                     </dd>
                                 </div>

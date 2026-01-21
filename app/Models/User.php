@@ -12,6 +12,9 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    const CREATED_AT = 'DatumAangemaakt';
+    const UPDATED_AT = 'DatumGewijzigd';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,7 +24,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
+        'PersoonId',
+        'IsActief',
+        'Opmerking',
     ];
 
     /**
@@ -44,33 +49,36 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'IsActief' => 'boolean',
+            'DatumAangemaakt' => 'datetime',
+            'DatumGewijzigd' => 'datetime',
+            'IsIngelogd' => 'boolean',
+            'Ingelogd' => 'datetime',
+            'Uitgelogd' => 'datetime',
         ];
     }
 
-/**
-     * Check of de gebruiker Directie is
-     * (Vervangt isAdmin)
-     */
-    public function isAdmin(): bool
+
+    public function rollen()
     {
-        return $this->role === 'Directie';
+        return $this->belongsToMany(Rol::class, 'RolPerGebruiker', 'GebruikerId', 'RolId')
+            ->withPivot(['IsActief', 'Opmerking', 'DatumAangemaakt', 'DatumGewijzigd']);
     }
 
     /**
-     * Check of de gebruiker Magazijnmedewerker is
-     * (Vervangt isWorker)
+     * Check via role name (e.g. 'Manager')
      */
-    public function isWorker(): bool
+    public function hasRole(string $roleName): bool
     {
-        return $this->role === 'Magazijnmedewerker';
+        return $this->rollen()->where('Naam', $roleName)->exists();
     }
 
     /**
-     * Check of de gebruiker Vrijwilliger is
-     * (Vervangt isUser)
+     * Legacy attribute accessor for 'role'
+     * Returns the name of the first role or null
      */
-    public function isUser(): bool
+    public function getRoleAttribute()
     {
-        return $this->role === 'Vrijwilliger';
+        return $this->rollen->first()?->Naam;
     }
 }

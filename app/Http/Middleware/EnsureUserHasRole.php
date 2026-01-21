@@ -15,7 +15,8 @@ class EnsureUserHasRole
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        if (! $request->user() || $request->user()->role !== $role) {
+        // Use hasRole logic if available, or fallback to role attribute
+        if (! $request->user() || ! $request->user()->hasRole($role)) {
             abort(403, 'Unauthorized action.');
         }
 

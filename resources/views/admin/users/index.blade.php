@@ -16,8 +16,8 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6 p-6">
                 <form method="GET" action="{{ route('admin.users.index') }}" class="flex gap-4 flex-wrap">
                     <div class="flex-1 min-w-[200px]">
-                        <input type="text" name="search" value="{{ $currentSearch }}" 
-                               placeholder="Search by name or email..." 
+                        <input type="text" name="search" value="{{ $currentSearch }}"
+                               placeholder="Search by name or email..."
                                class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
                     </div>
                     <div>
@@ -74,11 +74,11 @@
                                             <div class="text-sm text-gray-500 dark:text-gray-400">{{ $user->email }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                                {{ $user->role === 'admin' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' : '' }}
-                                                {{ $user->role === 'worker' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' : '' }}
-                                                {{ $user->role === 'user' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : '' }}">
-                                                {{ ucfirst($user->role) }}
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                                {{ $user->rollen->contains('Naam', 'Manager') ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' : '' }}
+                                                {{ $user->rollen->contains('Naam', 'Medewerker') ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' : '' }}
+                                                {{ $user->rollen->contains('Naam', 'Vrijwilliger') ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : '' }}">
+                                                {{ $user->rollen->first()?->Naam ?? 'No Role' }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">

@@ -15,9 +15,6 @@ BEGIN
         g.AantalBabys,
         CONCAT_WS(' ', p.Voornaam, p.Tussenvoegsel, p.Achternaam) AS Vertegenwoordiger
     FROM Gezin g
-    INNER JOIN Voedselpakket v
-        ON v.GezinId = g.Id
-        AND v.IsActief = 1
     LEFT JOIN Persoon p
         ON p.GezinId = g.Id
         AND p.IsVertegenwoordiger = 1

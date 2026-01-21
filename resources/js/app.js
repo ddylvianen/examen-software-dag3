@@ -15,7 +15,7 @@ let warningTimer;
 function resetTimers() {
     clearTimeout(inactivityTimer);
     clearTimeout(warningTimer);
-    
+
     warningTimer = setTimeout(() => {
         showSessionWarning();
     }, WARNING_TIMEOUT);

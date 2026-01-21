@@ -8,9 +8,7 @@
             </h1>
 
             <div class="flex gap-2">
-                <form action="{{ route('voorraad.ProductenPerCategorie') }}" method="POST">
-                    @METHOD("GET")
-                    @csrf
+                <form action="{{ route('voorraad.ProductenPerCategorie') }}" method="GET">
                     <select
                         name="categorieid"
                         class="rounded-md border border-gray-300 py-2 text-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"

@@ -30,4 +30,5 @@ Route::middleware(['auth', 'role:Manager'])->prefix('admin')->name('admin.')->gr
     Route::resource('users', UserController::class);
 });
 
+require __DIR__ . '/voedselpakketten.php';
 require __DIR__ . '/auth.php';

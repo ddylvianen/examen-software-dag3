@@ -7,12 +7,14 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Role-based dashboards
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+// Home (Wireframe-01)
+Route::get('/', function () {
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('welcome');
+})->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,4 +27,5 @@ Route::middleware(['auth', 'role:Manager'])->prefix('admin')->name('admin.')->gr
     Route::resource('users', UserController::class);
 });
 
+require __DIR__ . '/voedselpakketten.php';
 require __DIR__ . '/auth.php';

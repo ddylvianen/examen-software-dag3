@@ -11,6 +11,8 @@ BEGIN
         p.Houdbaarheidsdatum         AS houdbaarheidsdatum,
         p.Barcode                    AS barcode,
         ppm.Locatie                  AS magazijn,
+        m.Id                         AS magazijn_id,
+        ppm.MagazijnId               AS magazijn_relatie_id,
         m.Ontvangstdatum             AS ontvangstdatum,
         m.Uitleveringsdatum          AS uitleveringsdatum,
         m.Aantal                     AS aantal
@@ -26,3 +28,4 @@ BEGIN
 END ??
 
 DELIMITER ;
+

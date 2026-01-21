@@ -7,59 +7,56 @@
                 {{-- Titel --}}
 
                 {{-- Form --}}
-                {{-- <form method="POST" action="{{ route('producten.update', $product->id ?? 1) }}" class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+                <form method="POST" action="{{ route('voorraad.update', ['id' => $product->product_id]) }}">
                     @csrf
-                    @method('PUT') --}}
+                    @method('PUT')
 
-                    {{-- Productnaam --}}
                     <div>
                         <label class="block font-semibold mb-1">Productnaam</label>
                         <input
                             type="text"
-                            name="naam"
+                            name="Productnaam"
                             value="{{ $product->productnaam }}"
                             class="w-full rounded-lg bg-blue-50 border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         >
                     </div>
 
-                    {{-- Houdbaarheidsdatum --}}
                     <div>
                         <label class="block font-semibold mb-1">Houdbaarheidsdatum</label>
                         <input
                             type="date"
-                            name="houdbaarheidsdatum"
+                            name="Houdbaarheidsdatum"
                             value="{{ $product->houdbaarheidsdatum }}"
                             class="w-full rounded-lg bg-blue-50 border border-gray-300 px-4 py-2"
                         >
                     </div>
 
-                    {{-- Barcode --}}
                     <div>
                         <label class="block font-semibold mb-1">Barcode</label>
                         <input
                             type="text"
-                            name="barcode"
+                            name="Barcode"
                             value="{{ $product->barcode }}"
                             class="w-full rounded-lg bg-blue-50 border border-gray-300 px-4 py-2"
                         >
                     </div>
 
-                    {{-- Magazijn locatie --}}
                     <div>
                         <label class="block font-semibold mb-1">Magazijn Locatie</label>
                         <select
-                            name="magazijn_id"
+                            name="MagazijnId"
                             class="w-full rounded-lg border border-gray-300 px-4 py-2 bg-white"
                         >
                             @forelse($magazijnen as $magazijn)
                                 <option
-                                    value="{{ $magazijn->Locatie }}"
+                                    value="{{ $magazijn->MagazijnId }}"
+                                    @if($magazijn->MagazijnId == $product->magazijn_relatie_id) selected @endif
                                 >
                                     {{ $magazijn->Locatie }}
                                 </option>
                             @empty
                                 <option
-                                    value="{{ $magazijn->id }}"
+                                    value=""
                                 >
                                     Geen magazijnen gevonden
                                 </option>
@@ -67,50 +64,45 @@
                         </select>
                     </div>
 
-                    {{-- Ontvangstdatum --}}
                     <div>
                         <label class="block font-semibold mb-1">Ontvangstdatum</label>
                         <input
                             type="date"
-                            name="ontvangstdatum"
+                            name="Ontvangstdatum"
                             value="{{ $product->ontvangstdatum }}"
                             class="w-full rounded-lg bg-blue-50 border border-gray-300 px-4 py-2"
                         >
                     </div>
 
-                    {{-- Aantal uitgeleverd --}}
                     <div>
                         <label class="block font-semibold mb-1">Aantal uitgeleverde producten</label>
-                        <input
+                        <input 
                             type="number"
-                            name="uitgeleverd"
-                            class="w-full rounded-lg border border-gray-300 px-4 py-2"
+                            class="w-full rounded-lg border border-gray-300 px-4 py-2 bg-white"                        
+                            name="Uitgeleverd" 
+                            value="0"
                         >
                     </div>
 
-                    {{-- Uitleveringsdatum --}}
                     <div>
                         <label class="block font-semibold mb-1">Uitleveringsdatum</label>
                         <input
                             type="date"
-                            name="uitleveringsdatum"
-                            value="{{ $product->uitleveringsdatum ?? '' }}"
+                            name="Uitleveringsdatum"
+                            value="{{ $product->uitleveringsdatum }}"
                             class="w-full rounded-lg border border-gray-300 px-4 py-2"
                         >
                     </div>
 
-                    {{-- Aantal op voorraad --}}
                     <div>
                         <label class="block font-semibold mb-1">Aantal op voorraad</label>
-                        <input
-                            type="number"
-                            name="voorraad"
-                            value="{{ $product->voorraad ?? '' }}"
-                            class="w-full rounded-lg bg-blue-50 border border-gray-300 px-4 py-2"
-                        >
+                        <input 
+                            type="number" 
+                            class="w-full rounded-lg border border-gray-300 px-4 py-2 bg-white"
+                            name="Aantal" 
+                            value="{{ $product->aantal }}">
                     </div>
 
-                    {{-- Acties --}}
                     <div class="md:col-span-2 flex justify-between items-center mt-6">
                         <button
                             type="submit"
@@ -126,12 +118,12 @@
                             >
                                 terug
                             </a>
-                            {{-- <a
-                                href="{{ route('home') }}"
+                            <a
+                                href="{{ route('welcome') }}"
                                 class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg"
                             >
                                 home
-                            </a> --}}
+                            </a>
                         </div>
                 </form>
             </div>

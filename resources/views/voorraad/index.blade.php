@@ -1,7 +1,22 @@
 <x-app-layout>
     <div class="p-6">
+            <div class="pl-2 sm:pl-4">
+                @if (session('success'))
+                    <div class="p-4 border border-green-600 bg-green-900/50 text-white rounded-lg mt-1 shadow-xl mb-5" role="alert">
+                        <h6 class="font-bold">{{ session('success') }}</h6>
+                    </div>
+                    <meta http-equiv="refresh" content="2;url={{ route('voorraad.index') }}">
+                @endif
+            </div>
+            <div class="pl-2 sm:pl-4">
+                @if (session('error'))
+                    <div class="p-4 border border-red-600 bg-red-900/50 text-white rounded-lg mt-1 shadow-xl mb-5" role="alert">
+                        <h6 class="font-bold">{{ session('error') }}</h6>
+                    </div>
+                    <meta http-equiv="refresh" content="2;url={{ route('voorraad.index') }}">
+                @endif
+            </div>
 
-        <!-- Titel + filters -->
         <div class="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <h1 class="text-2xl font-semibold text-white underline">
                 Overzicht Productvoorraden
@@ -82,12 +97,12 @@
 
         <!-- Home knop -->
         <div class="mt-6 flex justify-end">
-            {{-- <a
-                href="{{ route('home') }}"
+            <a
+                href="{{ route('welcome') }}"
                 class="rounded-md bg-blue-600 px-6 py-2 text-sm font-semibold text-white hover:bg-blue-500"
             >
                 home
-            </a> --}}
+            </a>
         </div>
 
     </div>

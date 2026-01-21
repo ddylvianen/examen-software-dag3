@@ -85,7 +85,28 @@ class VoorraadController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'Productnaam'           => 'required|string',
+            'Houdbaarheidsdatum'    => 'nullable|date',
+            'Barcode'               => 'nullable|string',
+            'MagazijnId'            => 'required|string',
+            'Ontvangstdatum'        => 'nullable|date',
+            'Uitgeleverd'           => 'nullable|integer',
+            'Uitleveringsdatum'     => 'nullable|date',
+            'Aantal'                => 'required|integer',
+        ]);
+
+        $product = Voorraad::SP_GetProductenInfoById($id);
+
+        if (($data['Uitgeleverd'] ?? 0) > $product->aantal){
+            return redirect()->route('voorraad.index')->with('error', 'Er worden meer producten uitgeleverd dan er in voorraad zijn');
+        }
+
+        $data['Aantal'] = $data['Aantal'] - ($data['Uitgeleverd'] ?? 0); 
+
+        Voorraad::SP_UpdateVoorraad($id, $data);
+
+        return redirect()->route('voorraad.index')->with('success', 'De Product gegevens zijn gewijzigd');
     }
 
     /**

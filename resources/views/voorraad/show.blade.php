@@ -3,7 +3,7 @@
         <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
 
             <!-- Titel -->
-            <h1 class="text-2xl font-semibold text-white underline mb-6">
+            <h1 class="text-2xl font-semibold underline mb-6">
                 Product Details {{ $product->productnaam }}
             </h1>
 
@@ -74,10 +74,10 @@
                         terug
                     </a>
 
-                    {{-- <a href="{{ route('dashboard') }}"
+                    <a href="{{ route('welcome') }}"
                     class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md font-semibold">
                         home
-                    </a> --}}
+                    </a>
                 </div>
             </div>
 

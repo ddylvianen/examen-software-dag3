@@ -4,6 +4,7 @@ DELIMITER ??
 CREATE PROCEDURE SP_GetAllMagazijnen()
 BEGIN
     SELECT DISTINCT
+        ppm.MagazijnId,
         ppm.Locatie
     FROM ProductPerMagazijn ppm
     ORDER BY ppm.Locatie;

@@ -31,4 +31,19 @@ class VoorraadModel extends Model
     {
         return DB::selectOne('CALL SP_GetProductenInfoById(?)', [$id]);
     }
+
+
+    Static public function SP_UpdateVoorraad($productId, $data)
+    {
+        return DB::update('CALL SP_UpdateVoorraad(?, ?, ?, ?, ?, ?, ?, ?)', [
+            $productId,
+            $data['Productnaam'],
+            $data['Barcode'] ?? null,
+            $data['Houdbaarheidsdatum'] ?? null,
+            $data['MagazijnId'],
+            $data['Ontvangstdatum'] ?? null,
+            $data['Uitleveringsdatum'] ?? null,
+            $data['Aantal']
+        ]);
+    }
 }

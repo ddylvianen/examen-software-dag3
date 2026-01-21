@@ -76,6 +76,12 @@
             <x-responsive-nav-link href="/" :active="request()->is('/')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
+
+            @if (Auth::user()->hasRole('Manager', 'Medewerker'))
+                <x-responsive-nav-link href="{{ route('voorraad.index') }}" :active="request()->is('/voorraad')">
+                    {{ __('Overzicht Productvoorraden') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

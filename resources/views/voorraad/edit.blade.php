@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="min-h-screen bg-gray-100 p-6">
         <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
-            <h1 class="text-2xl font-semibold text-green-600 underline mb-8">
+            <h1 class="text-2xl font-semibold underline mb-8">
                 Wijzig Product Details {{ $product->naam ?? 'Aardappel' }}
             </h1>
                 {{-- Titel --}}
@@ -14,6 +14,7 @@
                     <div>
                         <label class="block font-semibold mb-1">Productnaam</label>
                         <input
+                            required
                             type="text"
                             name="Productnaam"
                             value="{{ $product->productnaam }}"
@@ -24,6 +25,7 @@
                     <div>
                         <label class="block font-semibold mb-1">Houdbaarheidsdatum</label>
                         <input
+                            required
                             type="date"
                             name="Houdbaarheidsdatum"
                             value="{{ $product->houdbaarheidsdatum }}"
@@ -34,6 +36,7 @@
                     <div>
                         <label class="block font-semibold mb-1">Barcode</label>
                         <input
+                            required
                             type="text"
                             name="Barcode"
                             value="{{ $product->barcode }}"
@@ -67,6 +70,7 @@
                     <div>
                         <label class="block font-semibold mb-1">Ontvangstdatum</label>
                         <input
+                            required
                             type="date"
                             name="Ontvangstdatum"
                             value="{{ $product->ontvangstdatum }}"
@@ -76,7 +80,8 @@
 
                     <div>
                         <label class="block font-semibold mb-1">Aantal uitgeleverde producten</label>
-                        <input 
+                        <input
+                            required 
                             type="number"
                             class="w-full rounded-lg border border-gray-300 px-4 py-2 bg-white"                        
                             name="Uitgeleverd" 
@@ -87,6 +92,7 @@
                     <div>
                         <label class="block font-semibold mb-1">Uitleveringsdatum</label>
                         <input
+                            required
                             type="date"
                             name="Uitleveringsdatum"
                             value="{{ $product->uitleveringsdatum }}"
@@ -96,35 +102,37 @@
 
                     <div>
                         <label class="block font-semibold mb-1">Aantal op voorraad</label>
-                        <input 
+                        <input
+                            required 
                             type="number" 
                             class="w-full rounded-lg border border-gray-300 px-4 py-2 bg-white"
                             name="Aantal" 
                             value="{{ $product->aantal }}">
                     </div>
 
-                    <div class="md:col-span-2 flex justify-between items-center mt-6">
+                    <!-- Buttons - Responsive Layout -->
+                    <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 mt-6">
                         <button
                             type="submit"
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow"
-                        >
+                            class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md font-semibold text-center">
                             Wijzig Product Details
                         </button>
 
                         <div class="flex gap-3">
                             <a
                                 href="{{ url()->previous() }}"
-                                class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg"
+                                class="w-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md font-semibold text-center"
                             >
                                 terug
                             </a>
                             <a
                                 href="{{ route('welcome') }}"
-                                class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg"
+                                class="w-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-md font-semibold text-center"
                             >
                                 home
                             </a>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>

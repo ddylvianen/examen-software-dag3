@@ -9,29 +9,40 @@ class VoorraadController extends Controller
 {
     public $voorraden = [];
 
+    // Toont overzicht van alle voorraden en categorieën
     public function index()
     {
+        // Haal alle producten op
         $voorraden = Voorraad::SP_GetAllProducten();
+        // Haal alle categorieën op
         $categorieen = Voorraad::SP_GetAllCategorieen();
 
+        // Geef data aan view
         return view('voorraad.index', [
             'voorraden' => $voorraden,
             'categorieen' => $categorieen
         ]);
     }
 
+    // Filtert voorraden per categorie
     public function ProductenPerCategorie(Request $request)
     {
+        // Haal categorie ID uit URL parameter
         $categorieid = $request->query('categorieid');
         
+        // Controleer of categorie ID ingevuld is
         if ($categorieid) {
+            // Haal producten voor geselecteerde categorie op
             $voorraden = Voorraad::SP_GetProductenPerCategorie($categorieid);
         } else {
+            // Anders haal alle producten op
             $voorraden = Voorraad::SP_GetAllProducten();
         }
         
+        // Haal alle categorieën voor filter op
         $categorieen = Voorraad::SP_GetAllCategorieen();
 
+        // Geef gefilterde data aan view
         return view('voorraad.index', [
             'voorraden' => $voorraden,
             'categorieen' => $categorieen
@@ -54,37 +65,37 @@ class VoorraadController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // Toont details van een specifiek product
     public function show(Request $request, $id)
     {
+        // Haal productinformatie op basis van ID
         $product = Voorraad::SP_GetProductenInfoById($id);
 
+        // Geef product naar detail view
         return view('voorraad.show', [
             'product' => $product
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Toont edit formulier voor product
     public function edit(Request $request, $id)
     {
+        // Haal productinformatie op
         $product = Voorraad::SP_GetProductenInfoById($id);
+        // Haal alle beschikbare magazijnen op
         $magazijnen = Voorraad::SP_GetAllMagazijnen();
 
+        // Geef data naar edit formulier
         return view('voorraad.edit', [
             'product' => $product,
             'magazijnen' => $magazijnen
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Werkt product informatie in database bij
     public function update(Request $request, string $id)
     {
+        // Valideer ingevulde gegevens
         $data = $request->validate([
             'Productnaam'           => 'required|string',
             'Houdbaarheidsdatum'    => 'nullable|date',
@@ -96,16 +107,21 @@ class VoorraadController extends Controller
             'Aantal'                => 'required|integer',
         ]);
 
+        // Haal huidige product gegevens op
         $product = Voorraad::SP_GetProductenInfoById($id);
 
-        if (($data['Uitgeleverd'] ?? 0) > $product->aantal){
+        // Controleer of uitgeleverde hoeveelheid niet groter is dan voorraad
+        if (($data['Uitgeleverd'] ?? 0) > $product->aantal) {
             return redirect()->route('voorraad.index')->with('error', 'Er worden meer producten uitgeleverd dan er in voorraad zijn');
         }
 
-        $data['Aantal'] = $data['Aantal'] - ($data['Uitgeleverd'] ?? 0); 
+        // Trek uitgeleverde hoeveelheid af van voorraad
+        $data['Aantal'] = $data['Aantal'] - ($data['Uitgeleverd'] ?? 0);
 
+        // Update product in database
         Voorraad::SP_UpdateVoorraad($id, $data);
 
+        // Redirect terug naar index met succesbericht
         return redirect()->route('voorraad.index')->with('success', 'De Product gegevens zijn gewijzigd');
     }
 

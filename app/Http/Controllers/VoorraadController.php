@@ -7,8 +7,6 @@ use App\Models\VoorraadModel as Voorraad;
 
 class VoorraadController extends Controller
 {
-    public $voorraden = [];
-
     public function index()
     {
         $voorraden = Voorraad::SP_GetAllProducten();

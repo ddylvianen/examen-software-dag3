@@ -67,7 +67,13 @@
                         </td>
                     </tr>
                     @empty
-                        geen producten
+                        <tr>
+                            <td class="p-4" colspan="7">
+                                <div class="w-full text-center p-4 bg-orange-500/50 border border-orange-500 rounded">
+                                    er zijn geen producten bekent die behoren bij de geselecteerde productcategorie
+                                </div>
+                            </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>

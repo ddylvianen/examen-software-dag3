@@ -16,6 +16,7 @@
                     <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
                         We helpen gezinnen en individuen in onze gemeenschap door voedsel en ondersteuning te bieden.
                     </p>
+
                     @guest
                         <div class="flex gap-4">
                             <a href="{{ route('login') }}" class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-md transition">
@@ -36,7 +37,7 @@
                         Wat wij doen
                     </h2>
                     <p class="text-gray-600 dark:text-gray-400 mb-4">
-                        Onze voedselbank werkt samen met donateurs en vrijwilligers om voeding aan te bieden aan mensen in nood. 
+                        Onze voedselbank werkt samen met donateurs en vrijwilligers om voeding aan te bieden aan mensen in nood.
                         We bieden niet alleen voedsel, maar ook begeleiding en ondersteuning.
                     </p>
                     <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">

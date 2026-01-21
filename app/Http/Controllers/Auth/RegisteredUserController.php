@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'string', 'in:Vrijwilliger,Magazijnmedewerker'],
+            'role' => ['nullable', 'string', 'in:Vrijwilliger,Magazijnmedewerker,Directie'],
         ]);
 
         $user = User::create([
@@ -47,12 +47,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        // Redirect based on user role
-        return match($user->role) {
-            'Directie' => redirect(route('dashboard.admin', absolute: false)),
-            'Magazijnmedewerker' => redirect(route('dashboard.worker', absolute: false)),
-            'Vrijwilliger' => redirect(route('dashboard.user', absolute: false)),
-            default => redirect(route('dashboard.user', absolute: false)),
-        };
+        return redirect(route('dashboard', absolute: false));
     }
 }

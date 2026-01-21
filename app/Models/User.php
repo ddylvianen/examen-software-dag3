@@ -12,9 +12,6 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    const CREATED_AT = 'DatumAangemaakt';
-    const UPDATED_AT = 'DatumGewijzigd';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
         'PersoonId',
         'IsActief',
         'Opmerking',
@@ -50,8 +48,6 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'IsActief' => 'boolean',
-            'DatumAangemaakt' => 'datetime',
-            'DatumGewijzigd' => 'datetime',
             'IsIngelogd' => 'boolean',
             'Ingelogd' => 'datetime',
             'Uitgelogd' => 'datetime',
@@ -70,15 +66,12 @@ class User extends Authenticatable
      */
     public function hasRole(string ...$roleNames): bool
     {
-        return $this->rollen()->whereIn('Naam', $roleNames)->exists();
-    }
-
-    /**
-     * Legacy attribute accessor for 'role'
-     * Returns the name of the first role or null
-     */
-    public function getRoleAttribute()
-    {
-        return $this->rollen->first()?->Naam;
+        // Prefer roles table (script.sql). Fallback to legacy users.role (migrations/tests).
+        try {
+            return $this->rollen()->whereIn('Naam', $roleNames)->exists();
+        } catch (\Throwable $e) {
+            $current = $this->getAttribute('role');
+            return $current !== null && in_array($current, $roleNames, true);
+        }
     }
 }

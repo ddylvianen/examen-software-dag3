@@ -15,12 +15,30 @@ class RunStoredProcedures extends Command
         $basePath = database_path('storedprocedures');
 
         $sps = [
+            // Leveranciers
             'leveranciers/SP_GetAllLeverancierTypes.sql',
             'leveranciers/SP_Getleveranciers.sql',
             'leveranciers/SP_Getleverancierbyid.sql',
             'leveranciers/SP_GetProductById.sql',
             'leveranciers/SP_GetProductPerLeverancierById.sql',
             'leveranciers/SP_Updateproduct.sql',
+            
+            // Voedselpakketten
+            'voedselpakket/SP_Voedselpakket_Eetwens_SelectAll.sql',
+            'voedselpakket/SP_Voedselpakket_GetForEdit.sql',
+            'voedselpakket/SP_Voedselpakket_GezinDetail.sql',
+            'voedselpakket/SP_Voedselpakket_GezinnenOverzicht_FilterEetwens.sql',
+            'voedselpakket/SP_Voedselpakket_GezinnenOverzicht.sql',
+            'voedselpakket/SP_Voedselpakket_PakkettenPerGezin.sql',
+            'voedselpakket/SP_Voedselpakket_UpdateStatus.sql',
+            
+            // Voorraad
+            'voorraad/SP_GetAllCategorieen.sql',
+            'voorraad/SP_GetAllMagazijnen.sql',
+            'voorraad/SP_GetAllProducten.sql',
+            'voorraad/SP_GetProductenPerCategorie.sql',
+            'voorraad/SP_GetProductInfoById.sql',
+            'voorraad/SP_UpdateVoorraad.sql',
         ];
 
         $this->info('Creating stored procedures...\n');
@@ -75,6 +93,27 @@ class RunStoredProcedures extends Command
             $this->line("<fg=green>✓ SP_GetProductPerLeverancierById</> - Found " . count($products) . " product(s)");
         } catch (\Exception $e) {
             $this->line("<fg=red>✗ Error: " . substr($e->getMessage(), 0, 80) . "</>");
+        }
+
+        try {
+            $categorieen = DB::select('CALL SP_GetAllCategorieen()');
+            $this->line("<fg=green>✓ SP_GetAllCategorieen</> - Found " . count($categorieen) . " categorieen");
+        } catch (\Exception $e) {
+            $this->line("<fg=yellow>⚠ Warning: " . substr($e->getMessage(), 0, 60) . "</>");
+        }
+
+        try {
+            $magazijnen = DB::select('CALL SP_GetAllMagazijnen()');
+            $this->line("<fg=green>✓ SP_GetAllMagazijnen</> - Found " . count($magazijnen) . " magazijnen");
+        } catch (\Exception $e) {
+            $this->line("<fg=yellow>⚠ Warning: " . substr($e->getMessage(), 0, 60) . "</>");
+        }
+
+        try {
+            $producten = DB::select('CALL SP_GetAllProducten()');
+            $this->line("<fg=green>✓ SP_GetAllProducten</> - Found " . count($producten) . " producten");
+        } catch (\Exception $e) {
+            $this->line("<fg=yellow>⚠ Warning: " . substr($e->getMessage(), 0, 60) . "</>");
         }
 
         $this->info('\n✓ All stored procedures executed successfully!');

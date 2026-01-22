@@ -41,11 +41,11 @@
                     @forelse($leveranciers as $leverancier)
                         <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
                             <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-medium">{{ $leverancier->Naam }}</td>
-                            <td class="hidden sm:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $leverancier->ContactPersoon ?? 'NNNN' }}</td>
-                            <td class="hidden md:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3 text-xs sm:text-sm">{{ $leverancier->Email ?? 'NNNN' }}</td>
-                            <td class="hidden lg:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $leverancier->Mobiel ?? 'NNNN' }}</td>
-                            <td class="hidden md:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $leverancier->LeverancierNummer ?? 'NNNN' }}</td>
-                            <td class="hidden sm:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $leverancier->LeverancierType ?? 'NNNN' }}</td>
+                            <td class="hidden sm:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $leverancier->ContactPersoon ?? '~~~' }}</td>
+                            <td class="hidden md:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3 text-xs sm:text-sm">{{ $leverancier->Email ?? '~~~' }}</td>
+                            <td class="hidden lg:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $leverancier->Mobiel ?? '~~~' }}</td>
+                            <td class="hidden md:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $leverancier->LeverancierNummer ?? '~~~' }}</td>
+                            <td class="hidden sm:table-cell border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $leverancier->LeverancierType ?? '~~~' }}</td>
                             <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 text-center text-blue-600 dark:text-blue-400 font-bold">
                                 {{-- Link naar detail pagina --}}
                                 <a href="{{ route('leveranciers.show', $leverancier->Id) }}" class="hover:underline text-lg sm:text-base">

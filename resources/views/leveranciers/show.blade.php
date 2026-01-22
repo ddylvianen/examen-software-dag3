@@ -5,16 +5,16 @@
 
         {{-- Leverancier Details Sectie --}}
         <div class="mb-8 md:mb-12 border border-gray-200 dark:border-gray-700 rounded-md overflow-hidden w-full md:max-w-2xl">
-            <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                <div class="p-3 font-bold text-gray-700 dark:text-gray-200 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-sm sm:text-base">Naam:</div>
+            <div class="grid grid-cols-1 sm:grid-cols-[200px_1fr] border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                <div class="p-5 font-bold text-gray-700 dark:text-gray-200 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-sm sm:text-base">Naam:</div>
                 <div class="p-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base">{{ $leverancier->LeverancierNaam ?? '~~~~' }}</div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                <div class="p-3 font-bold text-gray-700 dark:text-gray-200 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-sm sm:text-base">Leveranciernummer:</div>
+            <div class="grid grid-cols-1 sm:grid-cols-[200px_1fr] border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                <div class="p-5 font-bold text-gray-700 dark:text-gray-200 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-sm sm:text-base">Leveranciernummer:</div>
                 <div class="p-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base">{{ $leverancier->LeverancierNummer ?? '~~~~' }}</div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] bg-white dark:bg-gray-800">
-                <div class="p-3 font-bold text-gray-700 dark:text-gray-200 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-sm sm:text-base">Leveranciertype:</div>
+            <div class="grid grid-cols-1 sm:grid-cols-[200px_1fr] bg-white dark:bg-gray-800">
+                <div class="p-5 font-bold text-gray-700 dark:text-gray-200 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-sm sm:text-base">Leveranciertype:</div>
                 <div class="p-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base">{{ $leverancier->LeverancierType ?? '~~~~' }}</div>
             </div>
         </div>

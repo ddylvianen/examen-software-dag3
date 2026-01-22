@@ -23,7 +23,7 @@ BEGIN
         c.Email,
         c.Mobiel
     FROM Leverancier l
-    LEFT JOIN ContactPerLeverancier cpl ON l.Id = cpl.LeverancierId AND cpl.IsActief = 1
+    JOIN ContactPerLeverancier cpl ON l.Id = cpl.LeverancierId AND cpl.IsActief = 1
     LEFT JOIN Contact c ON cpl.ContactId = c.Id AND c.IsActief = 1
     WHERE l.IsActief = 1
     AND (p_LeverancierType = '' OR l.LeverancierType = p_LeverancierType)
@@ -33,6 +33,6 @@ END$$
 DELIMITER ;
 
 -- Test calls
--- call SP_Getleveranciers('');
--- call SP_Getleveranciers('Bedrijf');
+CALL SP_Getleveranciers('');
+CALL SP_Getleveranciers('Donor');
 

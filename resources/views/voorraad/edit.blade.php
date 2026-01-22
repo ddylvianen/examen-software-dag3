@@ -1,6 +1,22 @@
 <x-app-layout>
     <div class="min-h-screen bg-gray-100 p-6">
         <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <div class="pl-2 sm:pl-4">
+                @if (session('success'))
+                    <div class="p-4 border border-green-600 bg-green-900/50 text-white rounded-lg mt-1 shadow-xl mb-5" role="alert">
+                        <h6 class="font-bold">{{ session('success') }}</h6>
+                    </div>
+                    <meta http-equiv="refresh" content="2;url={{ route('voorraad.index') }}">
+                @endif
+            </div>
+            <div class="pl-2 sm:pl-4">
+                @if (session('error'))
+                    <div class="p-4 border border-red-600 bg-red-900/50 text-white rounded-lg mt-1 shadow-xl mb-5" role="alert">
+                        <h6 class="font-bold">{{ session('error') }}</h6>
+                    </div>
+                    <meta http-equiv="refresh" content="2;url={{ route('voorraad.index') }}">
+                @endif
+            </div>
             <h1 class="text-2xl font-semibold underline mb-8">
                 Wijzig Product Details {{ $product->naam ?? 'Aardappel' }}
             </h1>

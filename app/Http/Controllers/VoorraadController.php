@@ -112,7 +112,7 @@ class VoorraadController extends Controller
 
         // Controleer of uitgeleverde hoeveelheid niet groter is dan voorraad
         if (($data['Uitgeleverd'] ?? 0) > $product->aantal) {
-            return redirect()->route('voorraad.index')->with('error', 'Er worden meer producten uitgeleverd dan er in voorraad zijn');
+            return redirect()->route('voorraad.show', $id)->with('error', 'Er worden meer producten uitgeleverd dan er in voorraad zijn')->withInput();
         }
 
         // Trek uitgeleverde hoeveelheid af van voorraad
@@ -121,8 +121,8 @@ class VoorraadController extends Controller
         // Update product in database
         Voorraad::SP_UpdateVoorraad($id, $data);
 
-        // Redirect terug naar index met succesbericht
-        return redirect()->route('voorraad.index')->with('success', 'De Product gegevens zijn gewijzigd');
+        // Redirect terug naar show met succesbericht
+        return redirect()->route('voorraad.show', $id)->with('success', 'De Product gegevens zijn gewijzigd');
     }
 
     /**

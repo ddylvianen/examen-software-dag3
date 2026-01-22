@@ -1,11 +1,12 @@
 <x-app-layout>
-    <div class="p-6">
+    <div class="w-full md:w-[90%] mx-auto mt-6 mb-6 md:mt-12 p-4 md:p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm rounded-lg">
+
             <div class="pl-2 sm:pl-4">
                 @if (session('success'))
                     <div class="p-4 border border-green-600 bg-green-900/50 text-white rounded-lg mt-1 shadow-xl mb-5" role="alert">
                         <h6 class="font-bold">{{ session('success') }}</h6>
                     </div>
-                    <meta http-equiv="refresh" content="2;url={{ route('voorraad.index') }}">
+                    <meta http-equiv="refresh" content="3;url={{ route('voorraad.index') }}">
                 @endif
             </div>
             <div class="pl-2 sm:pl-4">
@@ -13,7 +14,7 @@
                     <div class="p-4 border border-red-600 bg-red-900/50 text-white rounded-lg mt-1 shadow-xl mb-5" role="alert">
                         <h6 class="font-bold">{{ session('error') }}</h6>
                     </div>
-                    <meta http-equiv="refresh" content="2;url={{ route('voorraad.index') }}">
+                    <meta http-equiv="refresh" content="3;url={{ route('voorraad.index') }}">
                 @endif
             </div>
 
@@ -142,7 +143,6 @@
                 </a>
             </div>
         </div>
-
 
     </div>
 </x-app-layout>

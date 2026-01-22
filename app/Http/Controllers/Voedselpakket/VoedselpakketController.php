@@ -98,7 +98,7 @@ class VoedselpakketController extends Controller
         $errorMessage = session('error');
 
         if ($isLocked) {
-            $errorMessage = 'Dit gezin is niet meer ingeschreven bij de voedselbank en daarom kan er geen voedselpakket worden uitgereikt';
+            $errorMessage = 'Dit gezin is niet meer ingeschreven bij de voedselbank en daarom kan er geen pakket gewijzigd worden.';
         }
 
         $backUrl = route('voedselpakketten.gezinnen.pakketten.index', ['gezinId' => $voedselpakket->GezinId]);

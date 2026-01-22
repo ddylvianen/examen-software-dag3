@@ -29,28 +29,28 @@
                     @endif
 
                     <div class="mt-6 overflow-x-auto">
-                        <table class="min-w-full border border-gray-200 dark:border-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-900">
-                                <tr>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Pakketnummer</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Datum samenstelling</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Datum uitgifte</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Status</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Aantal producten</th>
-                                    <th class="px-4 py-3 text-center text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Wijzig Status</th>
+                        <table class="w-full border-collapse border border-gray-200 dark:border-gray-700 text-left text-xs sm:text-sm">
+                            <thead>
+                                <tr class="bg-[#f2f2f2] dark:bg-gray-700">
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Pakketnummer</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Datum samenstelling</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Datum uitgifte</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Status</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Aantal producten</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200 text-center">Wijzig Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-gray-600 dark:text-gray-300">
                                 @forelse ($pakketten as $pakket)
-                                    <tr class="odd:bg-white even:bg-gray-50 dark:odd:bg-gray-800 dark:even:bg-gray-900">
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">{{ $pakket->PakketNummer }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-medium">{{ $pakket->PakketNummer }}</td>
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3">
                                             {{ $pakket->DatumSamenstelling ? \Illuminate\Support\Carbon::parse($pakket->DatumSamenstelling)->format('d-m-Y') : '-' }}
                                         </td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3">
                                             {{ $pakket->DatumUitgifte ? \Illuminate\Support\Carbon::parse($pakket->DatumUitgifte)->format('d-m-Y') : '-' }}
                                         </td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3">
                                             @php
                                                 $statusLabel = match ($pakket->Status) {
                                                     'NietUitgereikt' => 'Niet Uitgereikt',
@@ -60,11 +60,11 @@
                                             @endphp
                                             {{ $statusLabel }}
                                         </td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">{{ $pakket->AantalProducten }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700 text-center">
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $pakket->AantalProducten }}</td>
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 text-center text-blue-600 dark:text-blue-400 font-bold">
                                             <a
                                                 href="{{ route('voedselpakketten.pakketten.edit', ['voedselpakketId' => $pakket->VoedselpakketId]) }}"
-                                                class="inline-flex items-center justify-center text-blue-600 hover:text-blue-800"
+                                                class="inline-flex items-center justify-center hover:underline"
                                                 aria-label="Wijzig Status"
                                             >
                                                 <!-- pencil icon -->
@@ -77,8 +77,8 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="px-4 py-6 text-center text-sm text-gray-500 dark:text-gray-400">
-                                            Er zijn geen voedselpakketten gevonden voor dit gezin.
+                                        <td colspan="6" class="border border-gray-200 dark:border-gray-600 p-4 text-center text-sm text-gray-500 dark:text-gray-400">
+                                            &nbsp;
                                         </td>
                                     </tr>
                                 @endforelse

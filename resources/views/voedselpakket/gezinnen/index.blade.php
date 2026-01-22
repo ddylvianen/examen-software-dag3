@@ -43,31 +43,31 @@
                     @endif
 
                     <div class="mt-6 overflow-x-auto">
-                        <table class="min-w-full border border-gray-200 dark:border-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-900">
-                                <tr>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Gezinsnaam</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Omschrijving</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Volwassenen</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Kinderen</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Babys</th>
-                                    <th class="px-4 py-3 text-left text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Vertegenwoordiger</th>
-                                    <th class="px-4 py-3 text-center text-sm font-semibold border-b border-gray-200 dark:border-gray-700">Voedselpakket Details</th>
+                        <table class="w-full border-collapse border border-gray-200 dark:border-gray-700 text-left text-xs sm:text-sm">
+                            <thead>
+                                <tr class="bg-[#f2f2f2] dark:bg-gray-700">
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Gezinsnaam</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Omschrijving</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Volwassenen</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Kinderen</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Babys</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200">Vertegenwoordiger</th>
+                                    <th class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-bold text-gray-700 dark:text-gray-200 text-center">Voedselpakket Details</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-gray-600 dark:text-gray-300">
                                 @forelse ($gezinnen as $gezin)
-                                    <tr class="odd:bg-white even:bg-gray-50 dark:odd:bg-gray-800 dark:even:bg-gray-900">
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">{{ $gezin->Gezinsnaam }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">{{ $gezin->Omschrijving }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">{{ $gezin->AantalVolwassenen }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">{{ $gezin->AantalKinderen }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">{{ $gezin->AantalBabys }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700">{{ $gezin->Vertegenwoordiger }}</td>
-                                        <td class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-700 text-center">
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 font-medium">{{ $gezin->Gezinsnaam }}</td>
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $gezin->Omschrijving }}</td>
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $gezin->AantalVolwassenen }}</td>
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $gezin->AantalKinderen }}</td>
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $gezin->AantalBabys }}</td>
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3">{{ $gezin->Vertegenwoordiger }}</td>
+                                        <td class="border border-gray-200 dark:border-gray-600 p-2 sm:p-3 text-center text-blue-600 dark:text-blue-400 font-bold">
                                             <a
                                                 href="{{ route('voedselpakketten.gezinnen.pakketten.index', ['gezinId' => $gezin->GezinId]) }}"
-                                                class="inline-flex items-center justify-center text-blue-600 hover:text-blue-800"
+                                                class="inline-flex items-center justify-center hover:underline"
                                                 aria-label="Voedselpakket Details"
                                             >
                                                 <!-- cube icon -->
@@ -81,7 +81,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="px-4 py-6 text-center text-sm text-gray-500 dark:text-gray-400">
+                                        <td colspan="7" class="border border-gray-200 dark:border-gray-600 p-4 text-center text-sm text-gray-500 dark:text-gray-400">
                                             &nbsp;
                                         </td>
                                     </tr>

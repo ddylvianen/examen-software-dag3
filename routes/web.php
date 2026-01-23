@@ -43,5 +43,10 @@ Route::middleware(['auth', 'role:Manager'])->prefix('admin')->name('admin.')->gr
     Route::resource('users', UserController::class);
 });
 
+//fallback and show page not found
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
+});
+
 require __DIR__ . '/voedselpakketten.php';
 require __DIR__ . '/auth.php';
